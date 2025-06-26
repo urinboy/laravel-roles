@@ -1,22 +1,11 @@
 <?php
 
-use App\Livewire\Buildings\BuildingCreate;
-use App\Livewire\Buildings\BuildingEdit;
-use App\Livewire\Buildings\BuildingIndex;
-use App\Livewire\Buildings\BuildingShow;
-use App\Livewire\Roles\RoleCreate;
-use App\Livewire\Roles\RoleEdit;
-use App\Livewire\Roles\RoleIndex;
-use App\Livewire\Roles\RoleShow;
-use App\Livewire\Users\UserCreate;
-use App\Livewire\Users\UserEdit;
-use App\Livewire\Users\UserIndex;
-use App\Livewire\Users\UserShow;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('dashboard');
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
@@ -28,26 +17,26 @@ Route::middleware(['auth'])->group(function () {
 
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {
-        Route::get('/', RoleIndex::class)->name('index');
-        Route::get('create', RoleCreate::class)->name('create');
-        Route::get('{id}/edit', RoleEdit::class)->name('edit');
-        Route::get('{id}', RoleShow::class)->name('show');
+        Route::get('/', \App\Livewire\Roles\RoleIndex::class)->name('index');
+        Route::get('create', \App\Livewire\Roles\RoleCreate::class)->name('create');
+        Route::get('{id}/edit', \App\Livewire\Roles\RoleEdit::class)->name('edit');
+        Route::get('{id}', \App\Livewire\Roles\RoleShow::class)->name('show');
     });
 
     // Manage Users with traditional Livewire
     Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/', UserIndex::class)->name('index');
-        Route::get('create', UserCreate::class)->name('create');
-        Route::get('{id}/edit', UserEdit::class)->name('edit');
-        Route::get('{id}', UserShow::class)->name('show');
+        Route::get('/', \App\Livewire\Users\UserIndex::class)->name('index');
+        Route::get('create', \App\Livewire\Users\UserCreate::class)->name('create');
+        Route::get('{id}/edit', \App\Livewire\Users\UserEdit::class)->name('edit');
+        Route::get('{id}', \App\Livewire\Users\UserShow::class)->name('show');
     });
 
     // Manage Buildings with traditional Livewire
     Route::prefix('buildings')->name('buildings.')->group(function () {
-        Route::get('/', BuildingIndex::class)->name('index');
-        Route::get('create', BuildingCreate::class)->name('create');
-        Route::get('{id}/edit', BuildingEdit::class)->name('edit');
-        Route::get('{id}', BuildingShow::class)->name('show');
+        Route::get('/', \App\Livewire\Buildings\BuildingIndex::class)->name('index');
+        Route::get('create', \App\Livewire\Buildings\BuildingCreate::class)->name('create');
+        Route::get('{id}/edit', \App\Livewire\Buildings\BuildingEdit::class)->name('edit');
+        Route::get('{id}', \App\Livewire\Buildings\BuildingShow::class)->name('show');
     });
 
     // Settings with Volt

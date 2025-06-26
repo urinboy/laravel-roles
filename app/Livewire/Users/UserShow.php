@@ -8,10 +8,12 @@ use Livewire\Component;
 class UserShow extends Component
 {
     public $user;
+
     public function mount($id)
     {
-        $this->user = User::findOrFail($id);
+        $this->user = User::with('roles')->findOrFail($id);
     }
+
     public function render()
     {
         return view('livewire.users.user-show');

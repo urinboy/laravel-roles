@@ -6,15 +6,7 @@
     </div>
 
     <div>
-        @session('success')
-            <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-green-900 dark:text-green-300 dark:border-green-800" role="alert">
-                <svg class="flex-shrink-0 w-6 h-6 mr-2 text-green-700 dark:text-green-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
-                </svg>
-                <span class="font-medium">{{ $value }}</span>
-            </div>
-        @endsession
-
+        <x-alert-success />
         <div class="flex justify-end mb-4">
             <a href="{{ route('users.create') }}"
                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -30,6 +22,7 @@
                         <th scope="col" class="px-4 py-3 sm:px-6">{{ __('ID') }}</th>
                         <th scope="col" class="px-4 py-3 sm:px-6">{{ __('Name') }}</th>
                         <th scope="col" class="px-4 py-3 sm:px-6">{{ __('Email') }}</th>
+                        <th scope="col" class="px-4 py-3 sm:px-6">{{ __('Roles') }}</th>
                         <th scope="col" class="px-4 py-3 sm:px-6">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
@@ -39,6 +32,19 @@
                             <td class="px-4 py-3 sm:px-6 font-medium text-gray-900 dark:text-white">{{ $user->id }}</td>
                             <td class="px-4 py-3 sm:px-6 text-gray-600 dark:text-gray-300">{{ $user->name }}</td>
                             <td class="px-4 py-3 sm:px-6 text-gray-600 dark:text-gray-300 break-all">{{ $user->email }}</td>
+                            <td class="px-4 py-3 sm:px-6">
+                                @if($user->roles->count())
+                                    <div class="flex flex-wrap gap-1">
+                                        @foreach($user->roles as $role)
+                                            <span class="inline-block px-2 py-0.5 rounded bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100 text-xs">
+                                                {{ $role->name }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <span class="text-gray-400 dark:text-gray-500 text-xs">{{ __('No roles') }}</span>
+                                @endif
+                            </td>
                             <td class="px-4 py-3 sm:px-6 flex flex-col sm:flex-row gap-2">
                                 <a href="{{ route('users.show', $user->id) }}"
                                    wire:navigate
@@ -60,7 +66,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-4 py-3 sm:px-6 text-center text-gray-500 dark:text-gray-400">
+                            <td colspan="5" class="px-4 py-3 sm:px-6 text-center text-gray-500 dark:text-gray-400">
                                 {{ __('No users found') }}
                             </td>
                         </tr>

@@ -12,20 +12,21 @@ class UserIndex extends Component
 
     public function mount()
     {
-        $this->users = User::all();
+        // Rollarni eager load qilamiz
+        $this->users = User::with('roles')->get();
     }
 
     public function delete($id)
     {
         User::findOrFail($id)->delete();
-        $this->users = User::all();
+        $this->users = User::with('roles')->get();
         $this->dispatch('flash-success', message: __('User deleted successfully.'));
     }
 
     #[On('user-created')]
     public function refreshUsers($url)
     {
-        $this->users = User::all();
+        $this->users = User::with('roles')->get();
         $this->dispatch('navigate', $url);
     }
 

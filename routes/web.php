@@ -4,6 +4,10 @@ use App\Livewire\Buildings\BuildingCreate;
 use App\Livewire\Buildings\BuildingEdit;
 use App\Livewire\Buildings\BuildingIndex;
 use App\Livewire\Buildings\BuildingShow;
+use App\Livewire\Roles\RoleCreate;
+use App\Livewire\Roles\RoleEdit;
+use App\Livewire\Roles\RoleIndex;
+use App\Livewire\Roles\RoleShow;
 use App\Livewire\Users\UserCreate;
 use App\Livewire\Users\UserEdit;
 use App\Livewire\Users\UserIndex;
@@ -22,6 +26,14 @@ Route::view('dashboard', 'dashboard')
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
+    // Manage Roles with traditional Livewire
+    Route::prefix('roles')->name('roles.')->group(function () {
+        Route::get('/', RoleIndex::class)->name('index');
+        Route::get('create', RoleCreate::class)->name('create');
+        Route::get('{id}/edit', RoleEdit::class)->name('edit');
+        Route::get('{id}', RoleShow::class)->name('show');
+    });
+
     // Manage Users with traditional Livewire
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', UserIndex::class)->name('index');
@@ -29,7 +41,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('{id}/edit', UserEdit::class)->name('edit');
         Route::get('{id}', UserShow::class)->name('show');
     });
-    
+
+    // Manage Buildings with traditional Livewire
     Route::prefix('buildings')->name('buildings.')->group(function () {
         Route::get('/', BuildingIndex::class)->name('index');
         Route::get('create', BuildingCreate::class)->name('create');

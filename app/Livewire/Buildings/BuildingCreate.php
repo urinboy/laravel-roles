@@ -11,11 +11,20 @@ class BuildingCreate extends Component
 
     public function render()
     {
+        // Permission: building.create
+        if (!auth()->user()?->can('building.create')) {
+            abort(403, 'You do not have permission to create buildings.');
+        }
         return view('livewire.buildings.building-create');
     }
 
     public function submit()
     {
+        // Permission: building.create
+        if (!auth()->user()?->can('building.create')) {
+            abort(403, 'You do not have permission to create buildings.');
+        }
+
         $this->validate([
             "name" => "required|string|max:255|unique:buildings,name",
             "description" => "nullable|string",

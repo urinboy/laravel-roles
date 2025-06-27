@@ -14,9 +14,18 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
-                    <flux:navlist.item icon="link-slash" :href="route('roles.index')" :current="request()->routeIs('roles.index')" wire:navigate>{{ __('Roles') }}</flux:navlist.item>
-                    <flux:navlist.item icon="list-bullet" :href="route('buildings.index')" :current="request()->routeIs('buildings.index')" wire:navigate>{{ __('Buildings') }}</flux:navlist.item>
+                    @can('user.list')
+                        <flux:navlist.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
+                    @endcan
+                    @can('role.list')
+                        <flux:navlist.item icon="clipboard-document-check" :href="route('roles.index')" :current="request()->routeIs('roles.index')" wire:navigate>{{ __('Roles') }}</flux:navlist.item>
+                    @endcan
+                    @can('permission.list')
+                        <flux:navlist.item icon="key" :href="route('permissions.index')" :current="request()->routeIs('permissions.index')" wire:navigate>{{ __('Permissions') }}</flux:navlist.item>
+                    @endcan
+                    @can('building.list')
+                        <flux:navlist.item icon="list-bullet" :href="route('buildings.index')" :current="request()->routeIs('buildings.index')" wire:navigate>{{ __('Buildings') }}</flux:navlist.item>
+                    @endcan
                 </flux:navlist.group>
             </flux:navlist>
 

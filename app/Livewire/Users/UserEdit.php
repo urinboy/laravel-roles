@@ -10,26 +10,35 @@ class UserEdit extends Component
 {
     public $user;
     public $name, $email, $password, $confirm_password;
-    public $roles = [];
+    public $role = null; // faqat bitta rol
     public $allRoles = [];
 
     public function mount($id)
     {
+        // Permission: user.edit
+        if (!auth()->user()?->can('user.edit')) {
+            abort(403, 'You do not have permission to edit users.');
+        }
+
         $this->user = User::with('roles')->findOrFail($id);
         $this->name = $this->user->name;
         $this->email = $this->user->email;
-        $this->roles = $this->user->roles->pluck('name')->toArray();
+        $this->role = $this->user->roles->pluck('name')->first(); // faqat birinchi rol
         $this->allRoles = Role::all();
     }
 
     public function submit()
     {
+        // Permission: user.edit
+        if (!auth()->user()?->can('user.edit')) {
+            abort(403, 'You do not have permission to edit users.');
+        }
+
         $this->validate([
             "name" => "required|string|max:255",
             "email" => "required|email|max:255|unique:users,email," . $this->user->id,
             "password" => "nullable|min:8|same:confirm_password",
-            "roles" => "required|array|min:1",
-            "roles.*" => "exists:roles,name",
+            "role" => "required|exists:roles,name",
         ]);
 
         $this->user->name = $this->name;
@@ -39,13 +48,17 @@ class UserEdit extends Component
         }
         $this->user->save();
 
-        $this->user->syncRoles($this->roles);
+        $this->user->syncRoles([$this->role]);
 
         return to_route('users.index')->with("success", __("User updated successfully."));
     }
 
     public function render()
     {
+        // Permission: user.edit
+        if (!auth()->user()?->can('user.edit')) {
+            abort(403, 'You do not have permission to edit users.');
+        }
         return view('livewire.users.user-edit');
     }
 }

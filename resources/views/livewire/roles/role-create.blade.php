@@ -1,3 +1,4 @@
+@can('role.create')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('Create Role') }}</flux:heading>
@@ -28,7 +29,8 @@
                             [$model, $action] = explode('.', $perm->name);
                             $groupedPermissions[$model][] = $perm->name;
                         }
-                        $permissionOrder = ['view', 'create', 'edit', 'delete'];
+                        // 'list' action qo'shildi
+                        $permissionOrder = ['list', 'view', 'create', 'edit', 'delete'];
                     @endphp
 
                     @foreach ($groupedPermissions as $model => $perms)
@@ -37,7 +39,6 @@
                                 ->map(fn($action) => $model.'.'.$action)
                                 ->filter(fn($permName) => in_array($permName, $perms))
                                 ->values()->toArray();
-                            // Model permissionlarining barchasi tanlanganmi?
                             $allChecked = count($modelPermissions) > 0 && count(array_intersect($modelPermissions, $permissions ?? [])) === count($modelPermissions);
                         @endphp
                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow p-4 flex flex-col items-start">
@@ -90,3 +91,6 @@
         </form>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to create roles.") }}</div>
+@endcan

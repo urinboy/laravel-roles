@@ -15,6 +15,11 @@ class RoleEdit extends Component
 
     public function mount($id)
     {
+        // Permission: role.edit
+        if (!auth()->user()?->can('role.edit')) {
+            abort(403, 'You do not have permission to edit roles.');
+        }
+
         $this->role = Role::findOrFail($id);
         $this->name = $this->role->name;
         $this->permissions = $this->role->permissions->pluck('name')->toArray();
@@ -23,7 +28,7 @@ class RoleEdit extends Component
 
     public function checkAllPermissions($model)
     {
-        $order = ['view', 'create', 'edit', 'delete'];
+        $order = ['list', 'view', 'create', 'edit', 'delete'];
         $modelPermissions = [];
         foreach ($order as $action) {
             $perm = $model.'.'.$action;
@@ -36,7 +41,7 @@ class RoleEdit extends Component
 
     public function uncheckAllPermissions($model)
     {
-        $order = ['view', 'create', 'edit', 'delete'];
+        $order = ['list', 'view', 'create', 'edit', 'delete'];
         $modelPermissions = [];
         foreach ($order as $action) {
             $perm = $model.'.'.$action;
@@ -49,6 +54,11 @@ class RoleEdit extends Component
 
     public function submit()
     {
+        // Permission: role.edit
+        if (!auth()->user()?->can('role.edit')) {
+            abort(403, 'You do not have permission to edit roles.');
+        }
+
         $this->validate([
             'name' => 'required|string|max:255|unique:roles,name,' . $this->role->id,
             'permissions' => 'array',
@@ -62,6 +72,10 @@ class RoleEdit extends Component
 
     public function render()
     {
+        // Permission: role.edit
+        if (!auth()->user()?->can('role.edit')) {
+            abort(403, 'You do not have permission to edit roles.');
+        }
         return view('livewire.roles.role-edit');
     }
 }

@@ -1,3 +1,4 @@
+@can('user.view')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('User Details') }}</flux:heading>
@@ -36,12 +37,15 @@
             </div>
             <div class="mb-4">
                 <span class="block text-sm text-gray-600 dark:text-gray-300">{{ __('Created At') }}</span>
-                <span class="text-base text-gray-900 dark:text-white">{{ $user->created_at->format('Y-m-d H:i') }}</span>
+                <span class="text-base text-gray-900 dark:text-white">{{ $user->created_at->format('d.m.Y H:i') }}</span>
             </div>
             <div>
                 <span class="block text-sm text-gray-600 dark:text-gray-300">{{ __('Updated At') }}</span>
-                <span class="text-base text-gray-900 dark:text-white">{{ $user->updated_at->format('Y-m-d H:i') }}</span>
+                <span class="text-base text-gray-900 dark:text-white">{{ $user->updated_at->format('d.m.Y H:i') }}</span>
             </div>
         </div>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to view user details.") }}</div>
+@endcan

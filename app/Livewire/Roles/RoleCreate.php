@@ -14,12 +14,16 @@ class RoleCreate extends Component
 
     public function mount()
     {
+        // Permission: role.create
+        if (!auth()->user()?->can('role.create')) {
+            abort(403, 'You do not have permission to create roles.');
+        }
         $this->allPermissions = Permission::all();
     }
 
     public function checkAllPermissions($model)
     {
-        $order = ['view', 'create', 'edit', 'delete'];
+        $order = ['list', 'view', 'create', 'edit', 'delete'];
         $modelPermissions = [];
         foreach ($order as $action) {
             $perm = $model.'.'.$action;
@@ -27,13 +31,12 @@ class RoleCreate extends Component
                 $modelPermissions[] = $perm;
             }
         }
-        // Qo'shish uchun array birlashmasi va unique qiymatlar
         $this->permissions = array_values(array_unique(array_merge($this->permissions ?: [], $modelPermissions)));
     }
 
     public function uncheckAllPermissions($model)
     {
-        $order = ['view', 'create', 'edit', 'delete'];
+        $order = ['list', 'view', 'create', 'edit', 'delete'];
         $modelPermissions = [];
         foreach ($order as $action) {
             $perm = $model.'.'.$action;
@@ -41,12 +44,16 @@ class RoleCreate extends Component
                 $modelPermissions[] = $perm;
             }
         }
-        // Faqat boshqa permissionlar qolsin
         $this->permissions = array_values(array_diff($this->permissions ?: [], $modelPermissions));
     }
 
     public function submit()
     {
+        // Permission: role.create
+        if (!auth()->user()?->can('role.create')) {
+            abort(403, 'You do not have permission to create roles.');
+        }
+
         $this->validate([
             'name' => 'required|string|max:255|unique:roles,name',
             'permissions' => 'array',
@@ -62,6 +69,10 @@ class RoleCreate extends Component
 
     public function render()
     {
+        // Permission: role.create
+        if (!auth()->user()?->can('role.create')) {
+            abort(403, 'You do not have permission to create roles.');
+        }
         return view('livewire.roles.role-create');
     }
 }

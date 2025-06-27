@@ -1,3 +1,4 @@
+@can('role.edit')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('Edit Role') }}</flux:heading>
@@ -28,7 +29,7 @@
                             [$model, $action] = explode('.', $perm->name);
                             $groupedPermissions[$model][] = $perm->name;
                         }
-                        $permissionOrder = ['view', 'create', 'edit', 'delete'];
+                        $permissionOrder = ['list', 'view', 'create', 'edit', 'delete'];
                     @endphp
 
                     @foreach ($groupedPermissions as $model => $perms)
@@ -89,3 +90,6 @@
         </form>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to edit roles.") }}</div>
+@endcan

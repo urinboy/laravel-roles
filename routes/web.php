@@ -15,6 +15,8 @@ Route::view('dashboard', 'dashboard')
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
+    Route::get('permissions', \App\Livewire\Permissions\PermissionIndex::class)->middleware('permission:permission.list')->name('permissions.index');
+
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {
         Route::get('/', \App\Livewire\Roles\RoleIndex::class)->name('index');
@@ -25,10 +27,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Manage Users with traditional Livewire
     Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/', \App\Livewire\Users\UserIndex::class)->name('index');
-        Route::get('create', \App\Livewire\Users\UserCreate::class)->name('create');
-        Route::get('{id}/edit', \App\Livewire\Users\UserEdit::class)->name('edit');
-        Route::get('{id}', \App\Livewire\Users\UserShow::class)->name('show');
+        Route::get('/', \App\Livewire\Users\UserIndex::class)->middleware("permission:user.list")->name('index');
+        Route::get('create', \App\Livewire\Users\UserCreate::class)->middleware("permission:user.create")->name('create');
+        Route::get('{id}/edit', \App\Livewire\Users\UserEdit::class)->middleware("permission:user.edit")->name('edit');
+        Route::get('{id}', \App\Livewire\Users\UserShow::class)->middleware("permission:user.view")->name('show');
     });
 
     // Manage Buildings with traditional Livewire

@@ -1,3 +1,4 @@
+@can('building.list')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('Buildings') }}</flux:heading>
@@ -7,6 +8,7 @@
 
     <div>
         <x-alert-success />
+        @can('building.create')
         <div class="flex justify-end mb-4">
             <a href="{{ route('buildings.create') }}"
                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -14,6 +16,7 @@
                 {{ __('Create Building') }}
             </a>
         </div>
+        @endcan
 
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -55,6 +58,7 @@
                             </td>
                             <td class="px-4 py-3 sm:px-6 flex flex-row gap-2 justify-center">
                                 <!-- Show -->
+                                @can('building.view')
                                 <a href="{{ route('buildings.show', $building->id) }}" wire:navigate
                                     class="inline-flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 focus:ring-2 focus:outline-none focus:ring-gray-300"
                                     title="{{ __('Show') }}">
@@ -68,7 +72,9 @@
                                             stroke-width="1.5" fill="none" />
                                     </svg>
                                 </a>
+                                @endcan
                                 <!-- Edit -->
+                                @can('building.edit')
                                 <a href="{{ route('buildings.edit', $building->id) }}" wire:navigate
                                     class="inline-flex items-center justify-center p-2 rounded-lg bg-blue-100 dark:bg-blue-800 hover:bg-blue-200 dark:hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300"
                                     title="{{ __('Edit') }}">
@@ -80,7 +86,9 @@
                                             d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.5 19.5H3v-4.5l13.862-13.513z" />
                                     </svg>
                                 </a>
+                                @endcan
                                 <!-- Delete -->
+                                @can('building.delete')
                                 <flux:modal.trigger name="confirm-building-deletion-{{ $building->id }}">
                                     <button type="button"
                                         class="inline-flex items-center justify-center p-2 rounded-lg bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300"
@@ -116,6 +124,7 @@
                                         </div>
                                     </form>
                                 </flux:modal>
+                                @endcan
                             </td>
                         </tr>
                     @empty
@@ -130,3 +139,6 @@
         </div>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to view buildings.") }}</div>
+@endcan

@@ -1,3 +1,4 @@
+@can('role.view')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('Role Details') }}</flux:heading>
@@ -26,7 +27,7 @@
                             [$model, $action] = explode('.', $perm);
                             $grouped[$model][] = $action;
                         }
-                        $permissionOrder = ['view', 'create', 'edit', 'delete'];
+                        $permissionOrder = ['list', 'view', 'create', 'edit', 'delete'];
                     @endphp
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($grouped as $model => $actions)
@@ -52,3 +53,6 @@
         </div>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to view this role.") }}</div>
+@endcan

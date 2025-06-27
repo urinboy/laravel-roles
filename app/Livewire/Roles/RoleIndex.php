@@ -12,11 +12,19 @@ class RoleIndex extends Component
 
     public function mount()
     {
+        // Permission: role.list
+        if (!auth()->user()?->can('role.list')) {
+            abort(403, 'You do not have permission to view roles.');
+        }
         $this->roles = Role::all();
     }
 
     public function delete($id)
     {
+        // Permission: role.delete
+        if (!auth()->user()?->can('role.delete')) {
+            abort(403, 'You do not have permission to delete roles.');
+        }
         Role::findOrFail($id)->delete();
         $this->roles = Role::all();
         $this->dispatch('flash-success', message: __('Role deleted successfully.'));
@@ -25,7 +33,10 @@ class RoleIndex extends Component
     #[On('role-created')]
     public function refreshRoles($url)
     {
-        $this->roles = Role::all();
+        // Permission: role.list
+        if (auth()->user()?->can('role.list')) {
+            $this->roles = Role::all();
+        }
         $this->dispatch('navigate', $url);
     }
 
@@ -37,6 +48,10 @@ class RoleIndex extends Component
 
     public function render()
     {
+        // Permission: role.list
+        if (!auth()->user()?->can('role.list')) {
+            abort(403, 'You do not have permission to view roles.');
+        }
         return view('livewire.roles.role-index');
     }
 }

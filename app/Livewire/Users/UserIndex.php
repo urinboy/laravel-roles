@@ -12,12 +12,20 @@ class UserIndex extends Component
 
     public function mount()
     {
-        // Rollarni eager load qilamiz
-        $this->users = User::with('roles')->get();
+        // Faqat 'user.list' ruxsati bo'lganlar uchun userlarni yuklash
+        if (auth()->user()?->can('user.list')) {
+            $this->users = User::with('roles')->get();
+        } else {
+            abort(403, 'You do not have permission to view users.');
+        }
     }
 
     public function delete($id)
     {
+        // Faqat 'user.delete' ruxsati bo'lganlar foydalanuvchini o'chira oladi
+        if (!auth()->user()?->can('user.delete')) {
+            abort(403, 'You do not have permission to delete users.');
+        }
         User::findOrFail($id)->delete();
         $this->users = User::with('roles')->get();
         $this->dispatch('flash-success', message: __('User deleted successfully.'));
@@ -26,7 +34,9 @@ class UserIndex extends Component
     #[On('user-created')]
     public function refreshUsers($url)
     {
-        $this->users = User::with('roles')->get();
+        if (auth()->user()?->can('user.list')) {
+            $this->users = User::with('roles')->get();
+        }
         $this->dispatch('navigate', $url);
     }
 
@@ -38,6 +48,10 @@ class UserIndex extends Component
 
     public function render()
     {
+        // Faqat 'user.list' ruxsati bo'lganlar uchun view qaytariladi
+        if (!auth()->user()?->can('user.list')) {
+            abort(403, 'You do not have permission to view users.');
+        }
         return view('livewire.users.user-index');
     }
 }

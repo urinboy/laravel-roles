@@ -1,3 +1,4 @@
+@can('building.edit')
 <div>
     <div class="relative mb-6 w-full">
         <flux:heading size="xl" level="1">{{ __('Edit Building') }}</flux:heading>
@@ -50,3 +51,6 @@
         </div>
     </div>
 </div>
+@else
+    <div class="text-red-500 p-4">{{ __("You do not have permission to edit buildings.") }}</div>
+@endcan

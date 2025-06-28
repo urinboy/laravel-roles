@@ -21,6 +21,28 @@
                     :error="$errors->first('name')"
                 />
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <flux:input
+                        wire:model.live="first_name"
+                        label="{{ __('First Name') }}"
+                        placeholder="{{ __('Enter first name') }}"
+                        :error="$errors->first('first_name')"
+                    />
+                    <flux:input
+                        wire:model.live="last_name"
+                        label="{{ __('Last Name') }}"
+                        placeholder="{{ __('Enter last name') }}"
+                        :error="$errors->first('last_name')"
+                    />
+                </div>
+
+                <flux:input
+                    wire:model.live="phone"
+                    label="{{ __('Phone') }}"
+                    placeholder="{{ __('Enter phone') }}"
+                    :error="$errors->first('phone')"
+                />
+
                 <flux:input
                     wire:model.live="email"
                     label="{{ __('Email') }}"

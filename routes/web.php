@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('permissions', \App\Livewire\Permissions\PermissionIndex::class)->middleware('permission:permission.list')->name('permissions.index');
     Route::get('users', \App\Livewire\Users\UserManage::class)->middleware('permission:user.list')->name('users.index');
+    Route::get('contracts', \App\Livewire\Contracts\ContractManage::class)->middleware('permission:contract.list')->name('contracts.index');
 
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {

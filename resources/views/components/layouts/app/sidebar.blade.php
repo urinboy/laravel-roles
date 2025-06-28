@@ -23,6 +23,9 @@
                     @can('permission.list')
                         <flux:navlist.item icon="key" :href="route('permissions.index')" :current="request()->routeIs('permissions.index')" wire:navigate>{{ __('Permissions') }}</flux:navlist.item>
                     @endcan
+                    @can('contract.list')
+                        <flux:navlist.item icon="document-text" :href="route('contracts.index')" :current="request()->routeIs('contracts.index')" wire:navigate>{{ __('Contracts') }}</flux:navlist.item>
+                    @endcan
                     @can('building.list')
                         <flux:navlist.item icon="list-bullet" :href="route('buildings.index')" :current="request()->routeIs('buildings.index')" wire:navigate>{{ __('Buildings') }}</flux:navlist.item>
                     @endcan

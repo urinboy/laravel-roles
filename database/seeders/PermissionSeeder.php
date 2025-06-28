@@ -15,6 +15,7 @@ class PermissionSeeder extends Seeder
             'role',
             'permission',
             'user',
+            'contract',
             'building',
             'floor',
             'room',

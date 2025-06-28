@@ -12,8 +12,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new #[Layout('components.layouts.auth')] class extends Component {
-    #[Validate('required|string')]
-    public string $name = '';
+    #[Validate('required|string|email')]
+    public string $email = '';
 
     #[Validate('required|string')]
     public string $password = '';
@@ -29,12 +29,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         $this->ensureIsNotRateLimited();
 
-        // Auth by name, not email
-        if (! Auth::attempt(['name' => $this->name, 'password' => $this->password], $this->remember)) {
+        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'name' => __('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
 
@@ -58,7 +57,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'name' => __('auth.throttle', [
+            'email' => __('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -70,26 +69,26 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->name).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your name and password below to log in')" />
+    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="login" class="flex flex-col gap-6">
-        <!-- Username -->
+        <!-- Email Address -->
         <flux:input
-            wire:model="name"
-            :label="__('Username')"
-            type="text"
+            wire:model="email"
+            :label="__('Email address')"
+            type="email"
             required
             autofocus
-            autocomplete="name"
-            placeholder="{{ __('Enter your name') }}"
+            autocomplete="email"
+            placeholder="email@example.com"
         />
 
         <!-- Password -->

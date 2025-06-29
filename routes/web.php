@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Structures\StructureManage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -18,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('permissions', \App\Livewire\Permissions\PermissionIndex::class)->middleware('permission:permission.list')->name('permissions.index');
     Route::get('users', \App\Livewire\Users\UserManage::class)->middleware('permission:user.list')->name('users.index');
     Route::get('contracts', \App\Livewire\Contracts\ContractManage::class)->middleware('permission:contract.list')->name('contracts.index');
+    Route::get('structures', \App\Livewire\Structures\StructureManage::class)->middleware('permission:structure.list')->name('structures.index');
+    // Route::get('structures', StructureManage::class)->middleware('permission:building.list')->name('structures.index');
 
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {

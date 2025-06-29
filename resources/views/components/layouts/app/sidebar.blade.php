@@ -26,8 +26,8 @@
                     @can('contract.list')
                         <flux:navlist.item icon="document-text" :href="route('contracts.index')" :current="request()->routeIs('contracts.index')" wire:navigate>{{ __('Contracts') }}</flux:navlist.item>
                     @endcan
-                    @can('building.list')
-                        <flux:navlist.item icon="list-bullet" :href="route('buildings.index')" :current="request()->routeIs('buildings.index')" wire:navigate>{{ __('Buildings') }}</flux:navlist.item>
+                    @can('structure.list')
+                        <flux:navlist.item icon="building-office-2" :href="route('structures.index')" :current="request()->routeIs('structures.index')" wire:navigate>{{ __('Structures') }}</flux:navlist.item>
                     @endcan
                 </flux:navlist.group>
             </flux:navlist>

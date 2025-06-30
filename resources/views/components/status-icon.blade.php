@@ -1,5 +1,5 @@
 @props(['active' => false])
-<span class="ml-2">
+<span class="flex items-center ml-2">
     @if ($active)
         <!-- Active icon -->
         <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor"

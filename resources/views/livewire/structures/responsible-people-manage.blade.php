@@ -140,22 +140,8 @@
                             <p class="text-sm text-gray-600">{{ $person->phone }}</p>
                         </div>
                         <div class="flex items-center space-x-1">
-                            <span class="text-xs text-gray-400">
-                                @if ($person->is_active)
-                                    <!-- Active icon -->
-                                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12l2 2 4-4M12 21A9 9 0 1 1 12 3a9 9 0 0 1 0 18z" />
-                                    </svg>
-                                @else
-                                    <!-- Inactive icon -->
-                                    <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12M12 21A9 9 0 1 1 12 3a9 9 0 0 1 0 18z" />
-                                    </svg>
-                                @endif
+                            <span class="flex items-center">
+                                <x-status-icon :active="$person->is_active" />
                             </span>
                             <button wire:click="openModal('edit', {{ $person->id }})"
                                 class="text-blue-500 hover:text-blue-700 p-1 rounded-full hover:bg-blue-100 transition cursor-pointer">

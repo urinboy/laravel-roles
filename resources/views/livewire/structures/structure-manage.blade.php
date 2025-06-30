@@ -230,23 +230,28 @@
     {{-- Main structure display area --}}
     <div class="container mx-auto">
         <div class="mb-6 w-full">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ __('Structure Management') }}</h1>
-            <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage all your structure') }}</p>
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ __('Structure Management') }}</h1>
+                    <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage all your structure') }}</p>
+                </div>
+                @can('building.create')
+                    <div class="mb-6 flex justify-end">
+                        <button wire:click="openModal('building', 'create')"
+                        title="{{ __("Add New Building") }}"
+                            class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4v16m8-8H4"></path>
+                            </svg>
+
+                        </button>
+                    </div>
+                @endcan
+            </div>
+
             <hr class="mb-4 border-gray-200 dark:border-gray-700" />
         </div>
-
-        {{-- Add Building Button (Responsible Person add button moved to its own component) --}}
-        <div class="mb-6 flex justify-end">
-            <button wire:click="openModal('building', 'create')"
-                class="flex items-center px-4 py-2 bg-blue-50 text-blue-700 font-medium rounded hover:bg-blue-100 transition cursor-pointer">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4v16m8-8H4"></path>
-                </svg>
-                {{ __("Add New Building") }}
-            </button>
-        </div>
-
 
         {{-- Buildings List --}}
         <div class="space-y-4">
@@ -263,11 +268,17 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-semibold text-lg text-gray-900">{{ $building->name }}</div>
-                                <div class="text-sm text-gray-500">{{ $building->address }}</div>
+                                <div class="flex items-center font-semibold text-lg text-gray-900">{{ $building->name }} <x-status-icon :active="$building->is_active" /></div>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                    </svg>
+
+                                    {{ $building->address }}
+                                </div>
                             </div>
                         </div>
-                        {{-- <h3 class="text-lg font-semibold">{{ $building->name }} ({{ $building->address }})</h3> --}}
                         <div class="flex items-center space-x-2">
                             @can('building.edit')
                                 <button wire:click.stop="openModal('building', 'edit', {{ $building->id }})"
@@ -301,52 +312,68 @@
                     </div>
 
                     @if ($expandedBuildingId === $building->id)
-                        <div class="p-4 border-t border-gray-200 bg-gray-50">
-                            <p class="flex items-center text-sm text-gray-700 mb-4">{{ $building->description }} <x-status-icon :active="$building->is_active" /></p>
+                        <div class="p-4 border-t border-purple-200 bg-gray-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="flex items-center font-semibold text-sm text-gray-700 mb-4">{{ $building->description }}</p>
+                                @can('floor.create')
+                                    <button wire:click="openModal('floor', 'create', null, {{ $building->id }})"
+                                    class="flex items-center px-4 py-2 bg-orange-100 text-orange-700 text-sm font-medium rounded hover:bg-orange-200 transition cursor-pointer">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path d="M12 4v16m8-8H4"></path>
+                                        </svg>
+                                        {{ __("Add New Floor") }}
+                                    </button>
+                                @endcan
 
-                            <h4 class="text-md font-semibold mb-3">Floors:</h4>
-                            <button wire:click="openModal('floor', 'create', null, {{ $building->id }})"
-                                class="flex items-center px-4 py-2 bg-orange-50 text-orange-700 font-medium rounded hover:bg-orange-100 transition cursor-pointer">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path d="M12 4v16m8-8H4"></path>
-                                </svg>
-                                {{ __("Add New Floor") }}
-                            </button>
+                            </div>
 
                             <div class="space-y-3 mt-4">
                                 @forelse($building->floors->sortBy('floor_number') as $floor)
                                     <div class="bg-white rounded-lg shadow-sm border border-gray-100">
                                         <div class="p-3 flex justify-between items-center cursor-pointer"
                                             wire:click="expandFloor({{ $floor->id }})">
-                                            <h5 class="text-md font-medium">Floor {{ $floor->floor_number }} (Level
-                                                {{ $floor->level }})</h5>
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mr-2">
+                                                    <svg class="h-4 w-4 text-orange-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                                                    </svg>
+
+                                                </div>
+                                                <div>
+                                                    <div class="flex items-center font-semibold text-sm text-gray-900"> {{ $floor->floor_number }} - {{ __("Floor") }}  <x-status-icon :active="$floor->is_active" /></div>
+                                                    <div class="flex items-center text-sm text-gray-500">
+                                                        {{ $floor->description }}
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="flex items-center space-x-2">
-                                                <span class="text-xs text-gray-400">
-                                                    <x-status-icon :active="$floor->is_active" />
-                                                </span>
-                                                <button
-                                                    wire:click.stop="openModal('floor', 'edit', {{ $floor->id }}, {{ $building->id }})"
-                                                    class="text-blue-400 hover:text-blue-600 p-1 rounded-full hover:bg-blue-100 transition">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.172-8.172z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    wire:click.stop="openModal('floor', 'delete', {{ $floor->id }})"
-                                                    class="text-red-400 hover:text-red-600 p-1 rounded-full hover:bg-red-100 transition">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                        </path>
-                                                    </svg>
-                                                </button>
+                                                @can('floor.edit')
+                                                    <button
+                                                        wire:click.stop="openModal('floor', 'edit', {{ $floor->id }}, {{ $building->id }})"
+                                                        class="text-blue-400 hover:text-blue-600 p-1 rounded-full hover:bg-blue-100 transition">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.172-8.172z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                @endcan
+                                                @can('floor.delete')
+                                                    <button
+                                                        wire:click.stop="openModal('floor', 'delete', {{ $floor->id }})"
+                                                        class="text-red-400 hover:text-red-600 p-1 rounded-full hover:bg-red-100 transition">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                @endcan
                                                 <svg class="w-4 h-4 transition-transform duration-300 {{ $expandedFloorId === $floor->id ? 'rotate-90' : '' }}"
                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -357,31 +384,43 @@
                                         </div>
 
                                         @if ($expandedFloorId === $floor->id)
-                                            <div class="p-3 border-t border-gray-100 bg-gray-100">
-                                                <p class="text-xs text-gray-600 mb-3">{{ $floor->description }}</p>
-
-                                                <h6 class="text-sm font-semibold mb-2">Rooms:</h6>
-                                                <button
-                                                    wire:click="openModal('room', 'create', null, {{ $floor->id }})"
-                                                    class="flex items-center px-4 py-2 bg-blue-50 text-blue-700 font-medium rounded hover:bg-blue-100 transition cursor-pointer">
-                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
-                                                        stroke-width="2" viewBox="0 0 24 24">
-                                                        <path d="M12 4v16m8-8H4"></path>
-                                                    </svg>
-                                                    Add New Room
-                                                </button>
+                                            <div class="p-3 border-t border-orange-100 bg-gray-100">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <span class="text-sm font-semibold mb-2">Rooms:</span>
+                                                    @can('room.create')
+                                                        <button
+                                                            wire:click="openModal('room', 'create', null, {{ $floor->id }})"
+                                                            class="flex items-center text-sm px-4 py-2 bg-blue-100 text-blue-700 font-medium rounded hover:bg-blue-50 transition cursor-pointer">
+                                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                                stroke-width="2" viewBox="0 0 24 24">
+                                                                <path d="M12 4v16m8-8H4"></path>
+                                                            </svg>
+                                                            {{ __("Add New Room") }}
+                                                        </button>
+                                                    @endcan
+                                                </div>
 
                                                 <div class="space-y-2 mt-4">
                                                     @forelse($floor->rooms->sortBy('number') as $room)
                                                         <div
                                                             class="bg-white rounded-md shadow-xs border border-gray-100 p-3 flex flex-col">
-                                                            <div class="flex justify-between items-center mb-2">
-                                                                <p class="text-sm font-medium">{{ $room->number }} -
-                                                                    {{ $room->name }}</p>
+                                                            <div class="flex justify-between items-center">
+                                                                <div class="flex items-center">
+                                                                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-2">
+                                                                        <svg class="h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                                                        </svg>
+
+
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="flex items-center font-semibold text-sm text-gray-900"> {{ $room->number }} - {{ __("Room") }}  <x-status-icon :active="$room->is_active" /></div>
+                                                                        <div class="flex items-center text-sm text-gray-500">
+                                                                            {{ $room->name }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="flex items-center space-x-1">
-                                                                    <span class="text-xs text-gray-400">
-                                                                        <x-status-icon :active="$room->is_active" />
-                                                                    </span>
                                                                     <button
                                                                         wire:click.stop="openModal('room', 'edit', {{ $room->id }}, {{ $floor->id }})"
                                                                         class="text-blue-400 hover:text-blue-600 p-1 rounded-full hover:bg-blue-100 transition">
@@ -410,61 +449,67 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <p class="text-xs text-gray-500 mb-2">
-                                                                {{ $room->description }}</p>
 
-                                                            {{-- Responsible Persons for this Room --}}
-                                                            <h6 class="text-xs font-semibold mb-1 text-gray-700">
-                                                                Assigned Responsible People:</h6>
-                                                            <button
-                                                                wire:click.stop="openModal('assign-person-to-room', 'create', null, {{ $room->id }})"
-                                                                class="inline-flex items-center px-2 py-1 bg-teal-500 border border-transparent rounded-lg font-semibold text-xxs text-white uppercase tracking-widest hover:bg-teal-600 active:bg-teal-700 focus:outline-none focus:border-teal-700 focus:ring focus:ring-teal-300 disabled:opacity-25 transition mb-2">
-                                                                <svg class="w-3 h-3 mr-1" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    viewBox="0 0 24 24">
-                                                                    <path d="M12 4v16m8-8H4"></path>
-                                                                </svg>
-                                                                Assign Person
-                                                            </button>
+                                                            {{-- <p class="text-xs text-gray-500 mb-2">
+                                                                {{ $room->description }}</p>
+                                                            <h6 class="text-xs font-semibold mb-1 text-gray-700"> Assigned Responsible People:</h6>
+                                                            @can('responsibly.create')
+                                                                <button
+                                                                    wire:click.stop="openModal('assign-person-to-room', 'create', null, {{ $room->id }})"
+                                                                    class="inline-flex items-center px-2 py-1 bg-teal-500 border border-transparent rounded-lg font-semibold text-xxs text-white uppercase tracking-widest hover:bg-teal-600 active:bg-teal-700 focus:outline-none focus:border-teal-700 focus:ring focus:ring-teal-300 disabled:opacity-25 transition mb-2">
+                                                                    <svg class="w-3 h-3 mr-1" fill="none"
+                                                                        stroke="currentColor" stroke-width="2"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path d="M12 4v16m8-8H4"></path>
+                                                                    </svg>
+                                                                    Assign Person
+                                                                </button>
+
+                                                            @endcan
                                                             <div class="space-y-1">
                                                                 @forelse($room->responsiblePeople as $person)
                                                                     <div
                                                                         class="flex justify-between items-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
                                                                         <span
                                                                             class="text-xs text-gray-700">{{ $person->full_name }}</span>
-                                                                        <button
-                                                                            wire:click.stop="openModal('unassign-person-from-room', 'delete', null, {{ $room->id }}, {{ $person->id }})"
-                                                                            class="text-red-400 hover:text-red-600 p-0.5 rounded-full hover:bg-red-100 transition">
-                                                                            <svg class="w-3 h-3" fill="none"
-                                                                                stroke="currentColor"
-                                                                                viewBox="0 0 24 24"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <path stroke-linecap="round"
-                                                                                    stroke-linejoin="round"
-                                                                                    stroke-width="2"
-                                                                                    d="M6 18L18 6M6 6l12 12"></path>
-                                                                            </svg>
-                                                                        </button>
+                                                                            @can('responsibly.delete')
+                                                                            <button
+                                                                                wire:click.stop="openModal('unassign-person-from-room', 'delete', null, {{ $room->id }}, {{ $person->id }})"
+                                                                                class="text-red-400 hover:text-red-600 p-0.5 rounded-full hover:bg-red-100 transition">
+                                                                                <svg class="w-3 h-3" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path stroke-linecap="round"
+                                                                                        stroke-linejoin="round"
+                                                                                        stroke-width="2"
+                                                                                        d="M6 18L18 6M6 6l12 12"></path>
+                                                                                </svg>
+                                                                            </button>
+
+                                                                            @endcan
                                                                     </div>
                                                                 @empty
                                                                     <p class="text-gray-500 text-xs italic">No
                                                                         responsible person assigned.</p>
                                                                 @endforelse
-                                                            </div>
+                                                            </div> --}}
+
                                                         </div>
                                                     @empty
-                                                        <p class="text-gray-500 text-sm italic">No rooms found for this
-                                                            floor.</p>
+                                                        <p class="text-gray-500 text-center text-sm italic">No rooms found for this floor.</p>
                                                     @endforelse
                                                 </div>
+
                                             </div>
                                         @endif
                                     </div>
                                 @empty
-                                    <p class="text-gray-500 text-center text-lg italic">No buildings found. Start by
-                                        adding a new one!</p>
+                                    <p class="text-gray-500 text-center text-sm italic">No buildings found. Start by adding a new one!</p>
                                 @endforelse
                             </div>
+
+
                         </div>
                     @endif
                 </div>

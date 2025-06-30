@@ -12,10 +12,16 @@ class ContractManage extends Component
     use WithFileUploads;
 
     public $contracts;
+
+    // Modal controls
     public $showModal = false;
-    public $modalType = 'create'; // create | edit | delete
+    public $modalType = 'contract'; // always 'contract' for this component
+    public $actionType = 'create'; // create|edit|delete
+
+    // Selected ID
     public $contractId;
 
+    // Form fields
     public $number;
     public $date;
     public $inventory_numbers = [];
@@ -34,7 +40,7 @@ class ContractManage extends Component
             'description' => 'nullable|string',
         ];
 
-        if ($this->modalType === 'create') {
+        if ($this->actionType === 'create') {
             $rules['pdf_file'] = 'required|file|mimes:pdf|max:20480'; // max 20MB
         } else {
             $rules['pdf_file'] = 'nullable|file|mimes:pdf|max:20480';
@@ -45,16 +51,29 @@ class ContractManage extends Component
 
     public function mount()
     {
+        $this->loadContracts();
+    }
+
+    public function loadContracts()
+    {
         $this->contracts = Contract::with('user')->latest()->get();
     }
 
-    public function openModal($type, $id = null)
+    public function render()
     {
-        $this->modalType = $type;
-        $this->contractId = $id;
-        $this->resetErrorBag();
+        return view('livewire.contracts.contract-manage');
+    }
 
-        if ($type === 'edit') {
+    // --- Modal handlers ---
+    public function openModal($actionType = 'create', $id = null)
+    {
+        $this->resetErrorBag();
+        $this->resetAllFields();
+        $this->modalType = 'contract';
+        $this->actionType = $actionType;
+        $this->contractId = $id;
+
+        if ($actionType === 'edit' && $id) {
             $contract = Contract::findOrFail($id);
             $this->number = $contract->number;
             $this->date = $contract->date->toDateString();
@@ -62,21 +81,9 @@ class ContractManage extends Component
             $this->pdf_path = $contract->pdf_path;
             $this->pdf_file = null;
             $this->description = $contract->description;
-        } elseif ($type === 'delete') {
+        } elseif ($actionType === 'delete' && $id) {
             $contract = Contract::findOrFail($id);
             $this->number = $contract->number;
-        } else {
-            $this->reset([
-                'number',
-                'date',
-                'inventory_numbers',
-                'inventory_number_input',
-                'pdf_path',
-                'pdf_file',
-                'description',
-                'contractId'
-            ]);
-            $this->inventory_numbers = [];
         }
 
         $this->showModal = true;
@@ -85,19 +92,11 @@ class ContractManage extends Component
     public function closeModal()
     {
         $this->showModal = false;
-        $this->reset([
-            'number',
-            'date',
-            'inventory_numbers',
-            'inventory_number_input',
-            'pdf_path',
-            'pdf_file',
-            'description',
-            'contractId'
-        ]);
+        $this->resetAllFields();
         $this->resetErrorBag();
     }
 
+    // --- Form helpers ---
     public function addInventoryNumber()
     {
         $val = trim($this->inventory_number_input);
@@ -115,9 +114,10 @@ class ContractManage extends Component
         ));
     }
 
+    // --- CRUD actions ---
     public function save()
     {
-        // Yuborishdan oldin inputdagi qiymatni massivga qo‘shamiz
+        // Add the input value to the array before validation
         if ($this->inventory_number_input) {
             $this->addInventoryNumber();
         }
@@ -132,20 +132,20 @@ class ContractManage extends Component
             'user_id' => auth()->id(),
         ];
 
-        // Fayl yuklash
+        // File upload
         if ($this->pdf_file) {
             $pdfPath = $this->pdf_file->store('contracts', 'public');
             $data['pdf_path'] = $pdfPath;
 
-            // Faqat yangi fayl yuklanganda eski faylni o‘chir
-            if ($this->modalType === 'edit' && $this->pdf_path && $this->pdf_path !== $pdfPath) {
+            // Remove old file if necessary
+            if ($this->actionType === 'edit' && $this->pdf_path && $this->pdf_path !== $pdfPath) {
                 Storage::disk('public')->delete($this->pdf_path);
             }
-        } elseif ($this->modalType === 'edit') {
+        } elseif ($this->actionType === 'edit') {
             $data['pdf_path'] = $this->pdf_path;
         }
 
-        if ($this->modalType === 'edit') {
+        if ($this->actionType === 'edit') {
             $contract = Contract::findOrFail($this->contractId);
             $contract->update($data);
             session()->flash('success', __('Contract updated.'));
@@ -154,24 +154,34 @@ class ContractManage extends Component
             session()->flash('success', __('Contract created.'));
         }
 
-        $this->contracts = Contract::with('user')->latest()->get();
+        $this->loadContracts();
         $this->closeModal();
     }
 
     public function delete()
     {
+        if ($this->actionType !== 'delete') return;
+
         $contract = Contract::findOrFail($this->contractId);
         if ($contract->pdf_path) {
             Storage::disk('public')->delete($contract->pdf_path);
         }
         $contract->delete();
         session()->flash('success', __('Contract deleted.'));
-        $this->contracts = Contract::with('user')->latest()->get();
+        $this->loadContracts();
         $this->closeModal();
     }
 
-    public function render()
+    // --- Helpers ---
+    private function resetAllFields()
     {
-        return view('livewire.contracts.contract-manage');
+        $this->contractId = null;
+        $this->number = '';
+        $this->date = '';
+        $this->inventory_numbers = [];
+        $this->inventory_number_input = '';
+        $this->pdf_path = null;
+        $this->pdf_file = null;
+        $this->description = '';
     }
 }

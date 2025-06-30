@@ -1,7 +1,7 @@
 <div class="w-full mx-auto">
     <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-800 mb-1">University Structure</h1>
-        <div class="text-gray-500 mb-4">Manage buildings, floors, faculties and rooms</div>
+        <h1 class="text-2xl font-bold text-gray-800 mb-1">{{ __("University Structure") }}</h1>
+        <div class="text-gray-500 mb-4">{{ __("Manage buildings, floors, faculties and rooms") }}</div>
         <div class="flex justify-end">
             <button
                 class="flex items-center px-4 py-2 bg-blue-50 text-blue-700 font-medium rounded hover:bg-blue-100 transition"
@@ -9,13 +9,13 @@
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 4v16m8-8H4"></path>
                 </svg>
-                Add building
+                {{  __("Add building") }}
             </button>
         </div>
     </div>
     <div>
         @foreach ($buildings as $building)
-            <div class="border border-gray-200 rounded-lg bg-white mb-6">
+            <div class="border border-gray-200 rounded-lg bg-white mb-6 shadow-sm">
                 <!-- Building Header -->
                 <div class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
                     <div class="flex items-center space-x-3" wire:click="expandBuilding({{ $building->id }})">
@@ -65,7 +65,7 @@
                                 <div class="border-b border-gray-200">
                                     <nav class="-mb-px flex space-x-8">
                                         <button class="py-2 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600" disabled>
-                                            Floors & Rooms
+                                            {{ __("Floors & Rooms") }}
                                         </button>
                                     </nav>
                                 </div>
@@ -92,7 +92,7 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div class="font-medium text-gray-900">{{ $floor->floor_number }}-floor</div>
+                                                        <div class="font-medium text-gray-900">{{ $floor->floor_number }} - {{ __("floor") }}</div>
                                                         <div class="text-sm text-gray-500">{{ $floor->description }}</div>
                                                     </div>
                                                 </div>

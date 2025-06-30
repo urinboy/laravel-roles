@@ -8,6 +8,7 @@ class Room extends Model
 {
     protected $fillable = [
         'floor_id',
+        'number',
         'name',
         'description',
         'is_active',
@@ -24,6 +25,6 @@ class Room extends Model
 
     public function responsiblePerson()
     {
-        return $this->belongsTo(ResponsiblePerson::class, 'responsible_people');
+        return $this->belongsTo(ResponsiblePerson::class, 'responsible_person_id');
     }
 }

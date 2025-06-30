@@ -19,6 +19,6 @@ class ResponsiblePerson extends Model
 
     public function rooms()
     {
-        return $this->hasMany(Room::class, 'responsible_people');
+        return $this->hasMany(Room::class, 'responsible_person_id');
     }
 }

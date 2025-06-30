@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('floor_id')->constrained('floors')->onDelete('cascade');
+            $table->string('number')->nullable()->change();
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true); // Default is active

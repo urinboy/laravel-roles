@@ -2,15 +2,16 @@
 
 namespace App\Livewire\Structures;
 
+use App\Models\ResponsiblePerson;
 use Livewire\Component;
 use App\Models\Building;
 use App\Models\Floor;
 use App\Models\Room;
-use Illuminate\Support\Collection;
 
 class StructureManage extends Component
 {
     public $buildings;
+    public $responsiblePeople;
     public $expandedBuildingId = null;
     public $expandedFloorId = null;
 
@@ -25,29 +26,21 @@ class StructureManage extends Component
     public $selectedRoomId;
 
     // Form fields
-    public $building_name;
-    public $building_address;
-    public $building_description;
-    public $building_id;
+    public $building_name, $building_address, $building_description, $building_is_active = true, $building_id;
+    public $floor_number, $floor_description, $floor_level, $floor_is_active = true, $floor_id;
+    public $room_number, $room_name, $room_description, $room_is_active = true, $room_responsible_person_id, $room_id;
 
-    public $floor_number;
-    public $floor_description;
-    public $floor_id;
-
-    public $room_name;
-    public $room_description;
-    public $room_id;
-
-    protected $listeners = ['refreshStructures' => 'loadBuildings'];
+    protected $listeners = ['refreshStructures' => 'loadData'];
 
     public function mount()
     {
-        $this->loadBuildings();
+        $this->loadData();
     }
 
-    public function loadBuildings()
+    public function loadData()
     {
-        $this->buildings = Building::with(['floors.rooms'])->orderBy('id')->get();
+        $this->buildings = Building::with(['floors.rooms.responsiblePerson'])->orderBy('name')->get();
+        $this->responsiblePeople = ResponsiblePerson::where('is_active', true)->orderBy('full_name')->get();
     }
 
     public function render()
@@ -71,6 +64,7 @@ class StructureManage extends Component
     public function openModal($modalType, $actionType = 'create', $id = null, $parentId = null)
     {
         $this->resetErrorBag();
+        $this->resetAllFields();
         $this->modalType = $modalType;
         $this->actionType = $actionType;
 
@@ -81,30 +75,28 @@ class StructureManage extends Component
                 $this->building_name = $b->name;
                 $this->building_address = $b->address;
                 $this->building_description = $b->description;
-            } else {
-                $this->resetBuildingFields();
+                $this->building_is_active = $b->is_active;
             }
         } elseif ($modalType === 'floor') {
+            $this->selectedBuildingId = $parentId; // building id
             if ($actionType === 'edit' && $id) {
                 $f = Floor::findOrFail($id);
                 $this->floor_id = $f->id;
                 $this->floor_number = $f->floor_number;
+                $this->floor_level = $f->level;
                 $this->floor_description = $f->description;
-                $this->selectedBuildingId = $f->building_id;
-            } else {
-                $this->resetFloorFields();
-                $this->selectedBuildingId = $parentId; // building id
+                $this->floor_is_active = $f->is_active;
             }
         } elseif ($modalType === 'room') {
+            $this->selectedFloorId = $parentId; // floor id
             if ($actionType === 'edit' && $id) {
                 $r = Room::findOrFail($id);
                 $this->room_id = $r->id;
+                $this->room_number = $r->number;
                 $this->room_name = $r->name;
                 $this->room_description = $r->description;
-                $this->selectedFloorId = $r->floor_id;
-            } else {
-                $this->resetRoomFields();
-                $this->selectedFloorId = $parentId; // floor id
+                $this->room_is_active = $r->is_active;
+                $this->room_responsible_person_id = $r->responsible_person_id;
             }
         }
 
@@ -114,9 +106,7 @@ class StructureManage extends Component
     public function closeModal()
     {
         $this->showModal = false;
-        $this->resetBuildingFields();
-        $this->resetFloorFields();
-        $this->resetRoomFields();
+        $this->resetAllFields();
     }
 
     // --- CRUD actions ---
@@ -126,69 +116,56 @@ class StructureManage extends Component
             $this->validate([
                 'building_name' => 'required|string|max:255',
                 'building_address' => 'nullable|string|max:255',
-                'building_description' => 'nullable|string|max:255',
+                'building_description' => 'nullable|string',
+                'building_is_active' => 'required|boolean',
             ]);
-            if ($this->actionType === 'edit') {
-                $b = Building::findOrFail($this->building_id);
-                $b->update([
-                    'name' => $this->building_name,
-                    'address' => $this->building_address,
-                    'description' => $this->building_description,
-                ]);
-            } else {
-                Building::create([
-                    'name' => $this->building_name,
-                    'address' => $this->building_address,
-                    'description' => $this->building_description,
-                ]);
-            }
+            Building::updateOrCreate(['id' => $this->building_id], [
+                'name' => $this->building_name,
+                'address' => $this->building_address,
+                'description' => $this->building_description,
+                'is_active' => $this->building_is_active,
+            ]);
         } elseif ($this->modalType === 'floor') {
             $this->validate([
-                'floor_number' => 'required|integer',
-                'floor_description' => 'nullable|string|max:255',
                 'selectedBuildingId' => 'required|exists:buildings,id',
+                'floor_number' => 'required|integer',
+                'floor_level' => 'required|integer',
+                'floor_description' => 'nullable|string',
+                'floor_is_active' => 'required|boolean',
             ]);
-            if ($this->actionType === 'edit') {
-                $f = Floor::findOrFail($this->floor_id);
-                $f->update([
-                    'building_id' => $this->selectedBuildingId,
-                    'floor_number' => $this->floor_number,
-                    'description' => $this->floor_description,
-                ]);
-            } else {
-                Floor::create([
-                    'building_id' => $this->selectedBuildingId,
-                    'floor_number' => $this->floor_number,
-                    'description' => $this->floor_description,
-                ]);
-            }
+            Floor::updateOrCreate(['id' => $this->floor_id], [
+                'building_id' => $this->selectedBuildingId,
+                'floor_number' => $this->floor_number,
+                'level' => $this->floor_level,
+                'description' => $this->floor_description,
+                'is_active' => $this->floor_is_active,
+            ]);
         } elseif ($this->modalType === 'room') {
             $this->validate([
-                'room_name' => 'required|string|max:255',
-                'room_description' => 'nullable|string|max:255',
                 'selectedFloorId' => 'required|exists:floors,id',
+                'room_number' => 'required|integer',
+                'room_name' => 'required|string|max:255',
+                'room_description' => 'nullable|string',
+                'room_is_active' => 'required|boolean',
+                'room_responsible_person_id' => 'nullable|exists:responsible_people,id',
             ]);
-            if ($this->actionType === 'edit') {
-                $r = Room::findOrFail($this->room_id);
-                $r->update([
-                    'floor_id' => $this->selectedFloorId,
-                    'name' => $this->room_name,
-                    'description' => $this->room_description,
-                ]);
-            } else {
-                Room::create([
-                    'floor_id' => $this->selectedFloorId,
-                    'name' => $this->room_name,
-                    'description' => $this->room_description,
-                ]);
-            }
+            Room::updateOrCreate(['id' => $this->room_id], [
+                'floor_id' => $this->selectedFloorId,
+                'number' => $this->room_number,
+                'name' => $this->room_name,
+                'description' => $this->room_description,
+                'is_active' => $this->room_is_active,
+                'responsible_person_id' => $this->room_responsible_person_id,
+            ]);
         }
         $this->closeModal();
-        $this->loadBuildings();
+        $this->loadData();
     }
 
     public function delete()
     {
+        if ($this->actionType !== 'delete') return;
+
         if ($this->modalType === 'building') {
             Building::findOrFail($this->building_id)->delete();
         } elseif ($this->modalType === 'floor') {
@@ -197,29 +174,33 @@ class StructureManage extends Component
             Room::findOrFail($this->room_id)->delete();
         }
         $this->closeModal();
-        $this->loadBuildings();
+        $this->loadData();
     }
 
     // --- Helpers ---
-    private function resetBuildingFields()
+    private function resetAllFields()
     {
         $this->building_id = null;
         $this->building_name = '';
         $this->building_address = '';
         $this->building_description = '';
-    }
+        $this->building_is_active = true;
 
-    private function resetFloorFields()
-    {
         $this->floor_id = null;
         $this->floor_number = '';
+        $this->floor_level = '';
         $this->floor_description = '';
-    }
+        $this->floor_is_active = true;
 
-    private function resetRoomFields()
-    {
         $this->room_id = null;
+        $this->room_number = '';
         $this->room_name = '';
         $this->room_description = '';
+        $this->room_is_active = true;
+        $this->room_responsible_person_id = null;
+
+        $this->selectedBuildingId = null;
+        $this->selectedFloorId = null;
+        $this->selectedRoomId = null;
     }
 }

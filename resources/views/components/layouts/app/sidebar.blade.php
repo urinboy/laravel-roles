@@ -29,6 +29,9 @@
                     @can('structure.list')
                         <flux:navlist.item icon="building-office-2" :href="route('structures.index')" :current="request()->routeIs('structures.index')" wire:navigate>{{ __('Structures') }}</flux:navlist.item>
                     @endcan
+                    @can('responsibility.list')
+                        <flux:navlist.item icon="identification" :href="route('responsibility.index')" :current="request()->routeIs('responsibility.index')" wire:navigate>{{ __('Responsible People') }}</flux:navlist.item>
+                    @endcan
                 </flux:navlist.group>
             </flux:navlist>
 

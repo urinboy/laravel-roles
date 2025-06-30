@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users', \App\Livewire\Users\UserManage::class)->middleware('permission:user.list')->name('users.index');
     Route::get('contracts', \App\Livewire\Contracts\ContractManage::class)->middleware('permission:contract.list')->name('contracts.index');
     Route::get('structures', \App\Livewire\Structures\StructureManage::class)->middleware('permission:structure.list')->name('structures.index');
+    Route::get('responsibility', \App\Livewire\Structures\ResponsiblePeopleManage::class)->middleware('permission:responsibility.list')->name('responsibility.index');
     // Route::get('structures', StructureManage::class)->middleware('permission:building.list')->name('structures.index');
 
     // Manage Roles with traditional Livewire

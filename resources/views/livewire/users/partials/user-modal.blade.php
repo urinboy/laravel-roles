@@ -14,7 +14,7 @@
                     @endif
                 </h3>
                 <button @click="show = false" wire:click="closeModal"
-                    class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300 text-2xl font-bold transition leading-none focus:outline-none">&times;</button>
+                    class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300 text-2xl font-bold transition leading-none focus:outline-none cursor-pointer">&times;</button>
             </div>
             <form wire:submit.prevent="{{ $modalType === 'delete' ? 'delete' : 'save' }}">
                 @if($modalType === 'delete')
@@ -77,7 +77,7 @@
                             placeholder="{{ __('Password') }}"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 pr-10 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-100 focus:ring-2 focus:ring-blue-500" />
                         <button type="button" tabindex="-1"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 cursor-pointer"
                             @click="show = !show">
                             <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -106,7 +106,7 @@
                             placeholder="{{ __('Confirm Password') }}"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 pr-10 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-100 focus:ring-2 focus:ring-blue-500" />
                         <button type="button" tabindex="-1"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 cursor-pointer"
                             @click="show = !show">
                             <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -128,17 +128,17 @@
                 @endif
                 <div class="flex justify-end gap-2 mt-6 mb-2">
                     <button type="button" @click="show = false" wire:click="closeModal"
-                        class="px-5 py-2 rounded-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-200 transition">
+                        class="px-5 py-2 rounded-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-200 transition cursor-pointer">
                         {{ __('Cancel') }}
                     </button>
                     @if ($modalType === 'delete')
                         <button type="submit"
-                            class="px-5 py-2 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition">
+                            class="px-5 py-2 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition  cursor-pointer">
                             {{ __('Delete') }}
                         </button>
                     @else
                         <button type="submit"
-                            class="px-5 py-2 rounded-lg font-medium text-white bg-blue-600 hover:bg-blue-700 transition">
+                            class="px-5 py-2 rounded-lg font-medium text-white bg-blue-600 hover:bg-blue-700 transition  cursor-pointer">
                             {{ $modalType === 'edit' ? __('Update') : __('Create') }}
                         </button>
                     @endif

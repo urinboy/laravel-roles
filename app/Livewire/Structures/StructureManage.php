@@ -31,7 +31,7 @@ class StructureManage extends Component
     // Form fields (also used for edit/delete identification)
     public $building_name, $building_address, $building_description, $building_is_active = true, $building_id;
     public $floor_number, $floor_description, $floor_level, $floor_is_active = true, $floor_id;
-    public $room_number, $room_name, $room_description, $room_is_active = true, $room_id; // room_number o'zgaruvchisiga o'zgartirildi
+    public $number, $room_name, $room_description, $room_is_active = true, $room_id; // number o'zgaruvchisiga o'zgartirildi
 
     // Properties for ResponsiblePerson CRUD (yangi)
     public $responsible_person_id;
@@ -144,7 +144,7 @@ class StructureManage extends Component
             $this->selectedFloorId = $parentId; // Qavatning IDsi (yaratish konteksti uchun)
             if ($actionType === 'edit' && $id) {
                 $r = Room::findOrFail($id);
-                $this->room_number = $r->number; // To'g'ri o'zgaruvchi nomi
+                $this->number = $r->number; // To'g'ri o'zgaruvchi nomi
                 $this->room_name = $r->name;
                 $this->room_description = $r->description;
                 $this->room_is_active = $r->is_active;
@@ -225,7 +225,7 @@ class StructureManage extends Component
             } elseif ($this->modalType === 'room') {
                 $this->validate([
                     'selectedFloorId' => 'required|exists:floors,id',
-                    'room_number' => [
+                    'number' => [
                         'nullable',
                         'string',
                         'max:255',
@@ -238,7 +238,7 @@ class StructureManage extends Component
 
                 Room::updateOrCreate(['id' => $this->room_id], [
                     'floor_id' => $this->selectedFloorId,
-                    'number' => $this->room_number, // Eski 'number' o'rniga 'room_number'
+                    'number' => $this->number, // Eski 'number' o'rniga 'number'
                     'name' => $this->room_name,
                     'description' => $this->room_description,
                     'is_active' => $this->room_is_active,
@@ -353,7 +353,7 @@ class StructureManage extends Component
         $this->floor_is_active = true;
 
         $this->room_id = null;
-        $this->room_number = ''; // 'number' o'rniga 'room_number'
+        $this->number = ''; // 'number' o'rniga 'number'
         $this->room_name = '';
         $this->room_description = '';
         $this->room_is_active = true;

@@ -9,7 +9,7 @@
     <div class="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <div class="flex w-full max-w-md flex-col gap-6">
             <div class="flex flex-col gap-6">
-                <div class="rounded-xl border bg-white dark:bg-stone-950 dark:border-stone-800 text-stone-800 shadow-xs">
+                <div class="rounded-xl border bg-white dark:bg-stone-950 dark:border-stone-800 text-stone-800 shadow-sm">
                     <div class="px-10 py-8">
                         <a href="{{ route('home') }}" class=" py-8 flex flex-row justify-center items-center gap-2 font-medium" wire:navigate>
                             <span class="flex h-9 w-9 items-center justify-center rounded-md">
@@ -19,6 +19,7 @@
                             <span style="font-size: 22px;">{{ config('app.name', 'Laravel') }}</span>
                         </a>
                         {{ $slot }}
+                        <span class="flex justify-center mt-4" style="font-size: 14px;">{{ __("Inventory management system") }}</span>
                     </div>
                 </div>
             </div>

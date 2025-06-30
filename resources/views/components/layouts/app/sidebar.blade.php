@@ -32,6 +32,9 @@
                     @can('responsibility.list')
                         <flux:navlist.item icon="identification" :href="route('responsibility.index')" :current="request()->routeIs('responsibility.index')" wire:navigate>{{ __('Responsible People') }}</flux:navlist.item>
                     @endcan
+                    @can('equipment-type.list')
+                        <flux:navlist.item icon="squares-2x2" :href="route('equipment-types.index')" :current="request()->routeIs('equipment-types.index')" wire:navigate>{{ __('Equipment Types') }}</flux:navlist.item>
+                    @endcan
                 </flux:navlist.group>
             </flux:navlist>
 

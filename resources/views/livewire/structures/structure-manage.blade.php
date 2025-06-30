@@ -9,11 +9,11 @@
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xl font-semibold text-gray-900">
                         @if ($actionType === 'edit')
-                            Edit {{ ucfirst(str_replace('-', ' ', $modalType)) }}
+                            {{ __("Edit") }} {{ ucfirst(str_replace('-', ' ', $modalType)) }}
                         @elseif($actionType === 'delete')
-                            Delete {{ ucfirst(str_replace('-', ' ', $modalType)) }}
+                            {{ __("Delete") }} {{ ucfirst(str_replace('-', ' ', $modalType)) }}
                         @else
-                            Add {{ ucfirst(str_replace('-', ' ', $modalType)) }}
+                            {{ __("Add") }} {{ ucfirst(str_replace('-', ' ', $modalType)) }}
                         @endif
                     </h3>
                     <button @click="show = false" wire:click="closeModal"
@@ -39,7 +39,7 @@
                         {{-- Building Form --}}
                         @if ($modalType === 'building')
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1 text-gray-800">Building name <span
+                                <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Building name") }} <span
                                         class="text-red-600">*</span></label>
                                 <input type="text" wire:model.lazy="building_name" placeholder="e.g., Main Campus"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
@@ -48,13 +48,13 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1 text-gray-800">Address</label>
+                                <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Address") }}</label>
                                 <input type="text" wire:model.lazy="building_address"
                                     placeholder="e.g., 123 University Ave"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1 text-gray-800">Description</label>
+                                <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Description") }}</label>
                                 <textarea wire:model.lazy="building_description" placeholder="Optional description"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-2 resize-none focus:ring-2 focus:ring-blue-500"></textarea>
                             </div>
@@ -71,7 +71,7 @@
                         @if ($modalType === 'floor')
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-1 text-gray-800">Floor Number <span
+                                    <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Floor Number") }} <span
                                             class="text-red-600">*</span></label>
                                     <input type="number" wire:model.lazy="floor_number" placeholder="e.g., 1"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
@@ -80,7 +80,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-1 text-gray-800">Level <span
+                                    <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Level") }} <span
                                             class="text-red-600">*</span></label>
                                     <input type="number" wire:model.lazy="floor_level" placeholder="e.g., 1"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1 text-gray-800">Description</label>
+                                <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Description") }}</label>
                                 <textarea wire:model.lazy="floor_description" placeholder="e.g., Faculty of Engineering"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-2 resize-none focus:ring-2 focus:ring-blue-500"></textarea>
                             </div>
@@ -98,7 +98,7 @@
                                 <label class="flex items-center">
                                     <input type="checkbox" wire:model="floor_is_active"
                                         class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                    <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    <span class="ml-2 text-sm text-gray-600">{{ __("Active") }}</span>
                                 </label>
                             </div>
                         @endif
@@ -107,7 +107,7 @@
                         @if ($modalType === 'room')
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-1 text-gray-800">Room Number <span
+                                    <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Room Number") }} <span
                                             class="text-red-600">*</span></label>
                                     <input type="text" wire:model.lazy="number" placeholder="e.g., 101"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
@@ -116,7 +116,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-1 text-gray-800">Room Name <span
+                                    <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Room Name") }} <span
                                             class="text-red-600">*</span></label>
                                     <input type="text" wire:model.lazy="room_name" placeholder="e.g., Dean's Office"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500" />
@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1 text-gray-800">Description</label>
+                                <label class="block text-sm font-medium mb-1 text-gray-800">{{ __("Description") }}</label>
                                 <textarea wire:model.lazy="room_description" placeholder="Optional description"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-2 resize-none focus:ring-2 focus:ring-blue-500"></textarea>
                             </div>
@@ -139,7 +139,7 @@
                             </div>
                         @endif
 
-                        {{-- Assign Person to Room Form --}}
+                        {{-- Assign Person to Room Form
                         @if ($modalType === 'assign-person-to-room')
                             <div class="mb-4">
                                 <label class="block text-sm font-medium mb-1 text-gray-800">Select Responsible Person
@@ -157,7 +157,7 @@
                                             : [];
                                     @endphp
                                     @foreach ($responsiblePeople as $person)
-                                        {{-- Only show people not already assigned to this room --}}
+                                        {{-- Only show people not already assigned to this room
                                         @if (!in_array($person->id, $assignedPersonIds))
                                             <option value="{{ $person->id }}">{{ $person->full_name }}</option>
                                         @endif
@@ -172,18 +172,18 @@
                             </div>
                             <p class="text-sm text-gray-600">Assigning to Room:
                                 <strong>{{ App\Models\Room::find($assign_person_room_id)->name ?? 'N/A' }}</strong></p>
-                        @endif
+                        @endif --}}
                     @endif
 
                     <div class="flex justify-end gap-2 mt-6 mb-2">
                         <button type="button" @click="show = false" wire:click="closeModal"
                             class="px-5 py-2 rounded-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-200 transition">
-                            Cancel
+                            {{ __("Cancel") }}
                         </button>
                         @if ($actionType === 'delete')
                             <button type="submit"
                                 class="px-5 py-2 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition">
-                                Delete
+                                {{ __("Delete") }}
                             </button>
                         @else
                             <button type="submit"
@@ -497,7 +497,7 @@
 
                                                         </div>
                                                     @empty
-                                                        <p class="text-gray-500 text-center text-sm italic">No rooms found for this floor.</p>
+                                                        <p class="text-gray-500 text-center text-sm italic">{{ __("No rooms found for this floor.") }}</p>
                                                     @endforelse
                                                 </div>
 
@@ -505,7 +505,7 @@
                                         @endif
                                     </div>
                                 @empty
-                                    <p class="text-gray-500 text-center text-sm italic">No buildings found. Start by adding a new one!</p>
+                                    <p class="text-gray-500 text-center text-sm italic">{{ __("No buildings found. Start by adding a new one!") }}</p>
                                 @endforelse
                             </div>
 
@@ -514,7 +514,7 @@
                     @endif
                 </div>
             @empty
-                <p class="text-gray-500 text-center text-lg italic">No buildings found. Start by adding a new one!</p>
+                <p class="text-gray-500 text-center text-lg italic">{{ __("No buildings found. Start by adding a new one!") }}</p>
             @endforelse
         </div>
     </div>

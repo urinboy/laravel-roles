@@ -21,6 +21,8 @@ class PermissionSeeder extends Seeder
             'floor',
             'room',
             'responsibility',
+            'equipment-type',
+            // 'equipment',
             // Add new model names here, e.g., 'post'
         ];
 

@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('contracts', \App\Livewire\Contracts\ContractManage::class)->middleware('permission:contract.list')->name('contracts.index');
     Route::get('structures', \App\Livewire\Structures\StructureManage::class)->middleware('permission:structure.list')->name('structures.index');
     Route::get('responsibility', \App\Livewire\Structures\ResponsiblePeopleManage::class)->middleware('permission:responsibility.list')->name('responsibility.index');
-    // Route::get('structures', StructureManage::class)->middleware('permission:building.list')->name('structures.index');
+    Route::get('equipment-types', \App\Livewire\EquipmentTypes\EquipmentTypeManage::class)->middleware('permission:equipment-type.list')->name('equipment-types.index');
 
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {
@@ -30,14 +30,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('{id}/edit', \App\Livewire\Roles\RoleEdit::class)->name('edit');
         Route::get('{id}', \App\Livewire\Roles\RoleShow::class)->name('show');
     });
-
-    // // Manage Users with traditional Livewire
-    // Route::prefix('users')->name('users.')->group(function () {
-    //     Route::get('/', \App\Livewire\Users\UserIndex::class)->middleware("permission:user.list")->name('index');
-    //     Route::get('create', \App\Livewire\Users\UserCreate::class)->middleware("permission:user.create")->name('create');
-    //     Route::get('{id}/edit', \App\Livewire\Users\UserEdit::class)->middleware("permission:user.edit")->name('edit');
-    //     Route::get('{id}', \App\Livewire\Users\UserShow::class)->middleware("permission:user.view")->name('show');
-    // });
 
     // Manage Buildings with traditional Livewire
     Route::prefix('buildings')->name('buildings.')->group(function () {

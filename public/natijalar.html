@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fakultetlar</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            .accordion-item {
+                padding: 10px;
+                margin: 5px 0;
+                background-color: #f9f9f9;
+                border-left: 4px solid #4caf50;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+            .accordion-item:hover {
+                background-color: #e0e0e0;
+            }
+            .accordion-item input {
+                display: none;
+            }
+            .accordion-item label {
+                display: block;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .accordion-item .content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            .accordion-item input:checked ~ .content {
+                margin-top: 10px;
+                max-height: 500px; /* Enough to show all content */
+            }
+            .sub-item {
+                padding: 10px;
+                margin: 5px auto;
+                background-color: #f9f9f9;
+                border-left: 4px solid #f44336;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+            .sub-item:hover {
+                background-color: #e0e0e0;
+            }
+            .sub-item a {
+                color: #f44336;
+                text-decoration: none;
+                display: block;
+            }
+            label {
+                margin: 5px auto;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>Fakultetlar</h2>
+            <ul>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-tarix" />
+                    <label for="toggle-tarix">Tarix</label>
+                    <div class="content">
+                        <ul>
+                            <li class="sub-item">
+                                <a
+                                    href="https://drive.google.com/file/d/1YfIeHeIiWUxmjGajHAh53IvgSXlmx1Ye/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    >Arxeologiya.PDF</a
+                                >
+                            </li>
+                            <li class="sub-item">
+                                <a
+                                    href="https://drive.google.com/file/d/1IeAMwjiYPBTbctHfn3W8qg4LNMO9JOBM/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    >Filosofiya.PDF</a
+                                >
+                            </li>
+                            <li class="sub-item">
+                                <a
+                                    href="https://drive.google.com/file/d/1cCqZ4H2qOYtYt-jkuxXcczhk_j2Yu7Mm/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    >Sociologiya.PDF</a
+                                >
+                            </li>
+                            <li class="sub-item">
+                                <a
+                                    href="https://drive.google.com/file/d/1R-fSL-gRrYoPZy0kew5u2iDpTO6Dj4yv/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    >Tarix.PDF</a
+                                >
+                            </li>
+                            <li class="sub-item">
+                                <a
+                                    href="https://drive.google.com/file/d/1JxE_kTVPGk0tCTupXMmPl7PcEg9PI6uC/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    >Tarix sirtqi.PDF</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-qaraqalpaq" />
+                    <label for="toggle-qaraqalpaq"
+                        >Qaraqalpaq filologiyasi ham jurnalistika</label
+                    >
+                    <div class="content">
+                        <ul style="list-style-type: none; padding: 0">
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1v56b5nOQ30Ss4n3ipcGMMtr8pkj5jth6/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Málimleme xızmeti hám jámiyetshilik penen baylanıslar.PDF</a
+                                >
+                            </li>
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1FvU4gnmvhvkQJzkCT6HQxittHuvc6tu9/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Jurnalistika (xızmet túrleri boyınsha).PDF</a
+                                >
+                            </li>
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1nYwjO-ZZE4_7fLD26QRiGO8sq417z8VI/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Jurnalistika (Baspa ǴXQ jurnalistikasi) sirtqi.PDF</a
+                                >
+                            </li>
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1b1lcR22O9Z2Obdo4V5KnnVh32RxP_j_f/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Filologiya hám tillerdi oqıtıw (qaraqalpaq tili).PDF</a
+                                >
+                            </li>
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1k5PWlg6cG9GJfjb9k2AzJ7UiB2kbvhsZ/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Filologiya hám tillerdi oqıtıw (qaraqalpaq tili) sirtqi.PDF</a
+                                >
+                            </li>
+                            <li
+                                style="
+                                    padding: 10px;
+                                    margin: 5px 0;
+                                    background-color: #f9f9f9;
+                                    border-left: 4px solid #f44336;
+                                    border-radius: 4px;
+                                    transition: background-color 0.3s;
+                                "
+                            >
+                                <a
+                                    href="https://drive.google.com/file/d/1QKVOn8FKDJPG5d_SgRiSqZe_JTt4nTRQ/view?usp=sharing"
+                                    target="_blank"
+                                    download
+                                    style="
+                                        color: #f44336;
+                                        text-decoration: none;
+                                        display: block;
+                                    "
+                                    >Baspa isi.PDF</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-ozbek" />
+                    <label for="toggle-ozbek">O‘zbek filologiyasi</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-matematika" />
+                    <label for="toggle-matematika">Matematika</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-sanaat" />
+                    <label for="toggle-sanaat">Sanaat texnologiyasi</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-sanatshunoslik" />
+                    <label for="toggle-sanatshunoslik">San‘atshunoslik</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-kimyo" />
+                    <label for="toggle-kimyo">Kimyo-texnologiya</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-quyilish" />
+                    <label for="toggle-quyilish">Quyilish</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-yuridika" />
+                    <label for="toggle-yuridika">Yuridika</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-shet" />
+                    <label for="toggle-shet">She‘r tilleri</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-ekonomika" />
+                    <label for="toggle-ekonomika">Ekonomika</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-arxitektura" />
+                    <label for="toggle-arxitektura">Arxitektura</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-geografiya" />
+                    <label for="toggle-geografiya"
+                        >Geografiya ham tabiiy resurslar</label
+                    >
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-dene" />
+                    <label for="toggle-dene">Dene madaniyati</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-biologiya" />
+                    <label for="toggle-biologiya">Biologiya</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+                <li class="accordion-item">
+                    <input type="checkbox" id="toggle-fizika" />
+                    <label for="toggle-fizika">Fizika</label>
+                    <div class="content">
+                        <!-- Add sub-items if needed -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

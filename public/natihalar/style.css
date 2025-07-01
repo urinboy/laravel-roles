@@ -1,0 +1,83 @@
+.dev-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dev-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.dev-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dev-accordion-item {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    border-left: 4px solid #4CAF50;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.dev-toggle {
+    display: none;
+}
+
+.dev-label {
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dev-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.dev-accordion-item .dev-toggle:checked ~ .dev-content {
+    max-height: 500px;
+}
+
+.dev-accordion-item:hover {
+    background-color: #e0e0e0;
+}
+
+.dev-sublist {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dev-subitem {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    border-left: 4px solid #f44336;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.dev-subitem a {
+    color: #f44336;
+    text-decoration: none;
+    display: block;
+}
+
+.dev-subitem:hover {
+    background-color: #e0e0e0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}

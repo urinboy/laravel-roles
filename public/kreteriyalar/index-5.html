@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dóretiwshilik Kriteriya</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .category-container {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card-link {
+            text-decoration: none; /* Remove underline from the link */
+            color: inherit; /* Inherit text color from parent */
+            display: flex; /* Changed to flex */
+            flex-direction: row; /* Arrange items in a row */
+            align-items: center; /* Vertically align items in the center */
+            width: 300px; /* Default width */
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            padding: 15px 20px; /* Adjusted padding for horizontal layout */
+            min-height: 90px; /* Ensure a minimum height for consistent cards */
+        }
+
+        .card-link:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: #e6f7ed;
+            border-radius: 50%;
+            margin-right: 15px; /* Space between icon and text */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #1a73e8;
+        }
+
+        .card-title {
+            color: #333;
+            margin: 0; /* Remove default margins for h3 */
+            word-wrap: break-word;
+            white-space: normal;
+            font-size: 1.0em; /* Slightly smaller font to fit on one line or wrap nicely */
+            line-height: 1.3;
+            flex-grow: 1; /* Allow title to grow and take available space */
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 600px) {
+            .card-link {
+                width: calc(50% - 30px);
+                max-width: 400px;
+            }
+            .card-container {
+                justify-content: space-around;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .card-link {
+                width: calc(33.333% - 30px);
+                max-width: 380px;
+            }
+            .card-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dóretiwshilik Kriteriya</h1>
+
+    <div class="category-container">
+        <h2>Arxitektura</h2>
+        <div class="card-container">
+            <a href="https://drive.google.com/file/d/1Ek7V8pVcl0lZCPoJf9tnY1V_F3olpzBN/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210400 “Dizayn landshaft dizayni” QQ</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1_JvBK4hvXe_n-7N0xxeSO3Vla9oGrxvd/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210400 “Dizayn landshaft dizayni” UZB</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1B92lBvFbNHySjQbuWMVQ7ixP0kdPbPv_/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210400 Dizayn landshaftniy dizayn</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1M6TNK3GPQ1ahZUMowhIbIX-K1LhJ2otS/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210401 “Dizayn interyer dizayni” QQ</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1dfDxpk5wb6SODMwnGIq6u-R947H9OyZ9/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210401 “Dizayn interyer dizayni” UZB</h3>
+            </a>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Dene mádeniyatı</h2>
+        <div class="card-container">
+            <a href="https://drive.google.com/file/d/1kkbyhukoBUJB1Oi3GiZFybAXAj_BK6WA/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60111200 “Fizicheskaya kultura”</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1OmhRDcalX-LtcfHY0hDRiYqhJK8rThGy/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60111200 Dene madeniyati</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1vbbm6aynCEF_p7rXEUMKu_ikOja4sHW1/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60111200 Jismoniy madaniyat (Imkoniyati cheklanganlar)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1x321rmhpyEhGOxkJvFZgM32lJe2Dy8HW/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60111200 Jismoniy madaniyat</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1tk6v1SqmCR6n5pVLWtsGDuaEPbuYQsAx/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">61010200 Sport faoliyati (futbol, kurash, voleybol, basketbol, gandbol)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1689v30-CjJ_nslPu4gRyCsp1YhaHADnP/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">61010200 Sport iskerligi (futbol, gúres, voleybol, basketbol, gandbol)</h3>
+            </a>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Jurnalistika</h2>
+        <div class="card-container">
+            <a href="https://drive.google.com/file/d/1yvSIhXGEVTiZuSZixN9INAKopVeubn5j/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320200 Malime xizmeti ham jamoatchilik penen baylanislar</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1VwN0XmoQafMdRKIKN9K2A1UsGw4tMJ6q/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320200 Axborot xizmati va jamoatchilik bilan aloqalar o'zbek guruhlari</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/11si4ndUQUgtSwSZqB0JhKO6Q2tW5uJne/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320200 Axborot xizmati va jamoatchilik bilan aloqalar rus guruhlari</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1Z9wwqbM8w_wkG_slFSymEjLXXV2vxOwj/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320100 Jurnalistika iskerlik turlari boyinsha</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1mhS_u7MZv0WOHYU5g2Y6IwbU7g0xvMZS/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320100 Jurnalistika faoliyat turlari bo'yicha rus guruhlari</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1EVNsgeUC9PoWGo5Vde2IUVgwKRtF_CHu/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60320100 Jurnalistika faoliyat turlari bo'yicha Karakalpak</h3>
+            </a>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Kórkem-óner</h2>
+        <div class="card-container">
+            <a href="https://drive.google.com/file/d/1LFnrLelnDsKDovRQPdd8PMd68rVuBuJR/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210400 Dizayn (libos va gazlamalar)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1ceeH4S9_VuObkUdcgzPlYOVPEpdxlJQE/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210400 Dizayn (lipas ham gezlemeler)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1_2NCS08oKUwwIydgMNG-MoN_d707Z37R/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210500 Rangtasvir dastgohli</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1_pmIQNuBnV7cZUCsijVkx9cLv2pGDc2_/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210500 Renli suret uskeneli</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1UG6W_rbD8YMoe9Z4b2bbcS7GSOxzAAbr/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210800 Amaliy san'at (badiiy kulolchilik)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1N2SPSZMGHEN_5DXi90ocEYNnw9VFpqvU/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60210800 Ameliy korkem-oner (korkem gulalshiliq)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1Jm9XT_rwbM6FUBEjkbMkTUl6wqmwB001/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60211400 Vokal korkem-oner (estrada qosiqshiligi)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1X9a4WZjAcG2MUN8BvXetqHkLFOjfDhRk/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60211400 Vokal korkem-oner milliy qosiq atqarishiligi</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/188ViC5JyiL-nxLpUU_3KDp4fVAof2ueb/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60211400 Vokal san'ati (an'anaviy xonandalik)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1K2DNMGSPeJVdo8zlnqMwmeeA5BEySeXE/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60211400 Vokal san'ati (estrada ijrochiligi)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1z9lzt0z_AXX475bLsLPHc9Cyy2I2LuV6/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60211500 Cholg'u ijrochiligi (an'anaviy cholg'ular)</h3>
+            </a>
+            <a href="https://drive.google.com/file/d/1SaD9YioPkU4SIPf0-fEpddZBQDBRM61B/view?usp=sharing" target="_blank" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">60411500 Saz asbap atqarishiligi (milliy saz-asbablar)</h3>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

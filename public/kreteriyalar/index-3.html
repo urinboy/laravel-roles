@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dóretiwshilik Kriteriya</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .category-container {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Softer shadow */
+            padding: 20px;
+            width: 300px;
+            box-sizing: border-box;
+            display: flex; /* Use flexbox for icon and text alignment */
+            flex-direction: column;
+            align-items: flex-start; /* Align content to the start */
+            text-align: left; /* Align text to the left */
+            transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+        }
+        .card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Slightly more prominent shadow on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        .card-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; /* Adjust size as needed */
+            height: 50px;
+            background-color: #e6f7ed; /* Light green background for the circle */
+            border-radius: 50%; /* Make it a circle */
+            margin-bottom: 15px; /* Space between icon and text */
+        }
+
+        .card-icon svg {
+            width: 24px; /* SVG icon size */
+            height: 24px;
+            fill: #1a73e8; /* Blue color for the icon, similar to Google's style */
+        }
+
+        .card h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px; /* Space between title and button */
+            word-wrap: break-word;
+            white-space: normal;
+            font-size: 1.1em; /* Slightly larger font for title */
+            line-height: 1.4; /* Improve readability */
+        }
+        .card a {
+            background-color: #1a73e8; /* Google blue for the button */
+            color: white;
+            padding: 10px 20px; /* Larger padding for button */
+            border-radius: 8px; /* More rounded button */
+            text-decoration: none;
+            display: inline-block;
+            margin-top: auto; /* Push button to the bottom if content varies */
+            align-self: center; /* Center the button within the card */
+            font-weight: bold; /* Make button text bold */
+            transition: background-color 0.2s ease; /* Smooth hover effect for button */
+        }
+        .card a:hover {
+            background-color: #0d47a1; /* Darker blue on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 600px) { /* Adjust breakpoint for 2 columns */
+            .card {
+                width: calc(50% - 30px);
+                max-width: 400px; /* Allow cards to be a bit wider */
+            }
+            .card-container {
+                justify-content: space-around;
+            }
+        }
+
+        @media (min-width: 900px) { /* Adjust breakpoint for 3 columns */
+            .card {
+                width: calc(33.333% - 30px);
+                max-width: 380px; /* Fine-tune max-width for 3 columns */
+            }
+            .card-container {
+                justify-content: center; /* Center cards in three columns */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dóretiwshilik Kriteriya</h1>
+
+    <div class="category-container">
+        <h2>Arxitektura</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210400 “Dizayn landshaft dizayni” QQ.pdf</h3>
+                <a href="https://drive.google.com/file/d/1Ek7V8pVcl0lZCPoJf9tnY1V_F3olpzBN/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210400 “Dizayn landshaft dizayni” UZB.pdf</h3>
+                <a href="https://drive.google.com/file/d/1_JvBK4hvXe_n-7N0xxeSO3Vla9oGrxvd/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210400 Dizayn landshaftniy dizayn.pdf</h3>
+                <a href="https://drive.google.com/file/d/1B92lBvFbNHySjQbuWMVQ7ixP0kdPbPv_/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210401 “Dizayn interyer dizayni” QQ.pdf</h3>
+                <a href="https://drive.google.com/file/d/1M6TNK3GPQ1ahZUMowhIbIX-K1LhJ2otS/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210401 “Dizayn interyer dizayni” UZB.pdf</h3>
+                <a href="https://drive.google.com/file/d/1dfDxpk5wb6SODMwnGIq6u-R947H9OyZ9/view?usp=sharing">Yuklab olish</a>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Dene mádeniyatı</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60111200 “Fizicheskaya kultura”.pdf</h3>
+                <a href="https://drive.google.com/file/d/1kkbyhukoBUJB1Oi3GiZFybAXAj_BK6WA/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60111200 Dene madeniyati .pdf</h3>
+                <a href="https://drive.google.com/file/d/1OmhRDcalX-LtcfHY0hDRiYqhJK8rThGy/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60111200 Jismoniy madaniyat (Imkoniyati cheklanganlar).pdf</h3>
+                <a href="https://drive.google.com/file/d/1vbbm6aynCEF_p7rXEUMKu_ikOja4sHW1/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60111200 Jismoniy madaniyat.pdf</h3>
+                <a href="https://drive.google.com/file/d/1x321rmhpyEhGOxkJvFZgM32lJe2Dy8HW/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>61010200 Sport faoliyati (futbol, kurash, voleybol, basketbol, gandbol).pdf</h3>
+                <a href="https://drive.google.com/file/d/1tk6v1SqmCR6n5pVLWtsGDuaEPbuYQsAx/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>61010200 Sport iskerligi (futbol, gúres, voleybol, basketbol, gandbol).pdf</h3>
+                <a href="https://drive.google.com/file/d/1689v30-CjJ_nslPu4gRyCsp1YhaHADnP/view?usp=sharing">Yuklab olish</a>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Jurnalistika</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320200 Malime xizmeti ham jamoatchilik penen baylanislar.pdf</h3>
+                <a href="https://drive.google.com/file/d/1yvSIhXGEVTiZuSZixN9INAKopVeubn5j/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320200 Axborot xizmati va jamoatchilik bilan aloqalar o'zbek guruhlari.pdf</h3>
+                <a href="https://drive.google.com/file/d/1VwN0XmoQafMdRKIKN9K2A1UsGw4tMJ6q/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320200 Axborot xizmati va jamoatchilik bilan aloqalar rus guruhlari.pdf</h3>
+                <a href="https://drive.google.com/file/d/11si4ndUQUgtSwSZqB0JhKO6Q2tW5uJne/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320100 Jurnalistika iskerlik turlari boyinsha.pdf</h3>
+                <a href="https://drive.google.com/file/d/1Z9wwqbM8w_wkG_slFSymEjLXXV2vxOwj/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320100 Jurnalistika faoliyat turlari bo'yicha rus guruhlari.pdf</h3>
+                <a href="https://drive.google.com/file/d/1mhS_u7MZv0WOHYU5g2Y6IwbU7g0xvMZS/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60320100 Jurnalistika faoliyat turlari bo'yicha Karakalpak.pdf</h3>
+                <a href="https://drive.google.com/file/d/1EVNsgeUC9PoWGo5Vde2IUVgwKRtF_CHu/view?usp=sharing">Yuklab olish</a>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width: 100%; border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <div class="category-container">
+        <h2>Kórkem-óner</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210400 Dizayn (libos va gazlamalar).PDF</h3>
+                <a href="https://drive.google.com/file/d/1LFnrLelnDsKDovRQPdd8PMd68rVuBuJR/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210400 Dizayn (lipas ham gezlemeler).PDF</h3>
+                <a href="https://drive.google.com/file/d/1ceeH4S9_VuObkUdcgzPlYOVPEpdxlJQE/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210500 Rangtasvir dastgohli .PDF</h3>
+                <a href="https://drive.google.com/file/d/1_2NCS08oKUwwIydgMNG-MoN_d707Z37R/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210500 Renli suret uskeneli.PDF</h3>
+                <a href="https://drive.google.com/file/d/1_pmIQNuBnV7cZUCsijVkx9cLv2pGDc2_/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210800 Amaliy san'at (badiiy kulolchilik).PDF</h3>
+                <a href="https://drive.google.com/file/d/1UG6W_rbD8YMoe9Z4b2bbcS7GSOxzAAbr/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60210800 Ameliy korkem-oner (korkem gulalshiliq).PDF</h3>
+                <a href="https://drive.google.com/file/d/1N2SPSZMGHEN_5DXi90ocEYNnw9VFpqvU/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60211400 Vokal korkem-oner (estrada qosiqshiligi).pdf</h3>
+                <a href="https://drive.google.com/file/d/1Jm9XT_rwbM6FUBEjkbMkTUl6wqmwB001/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60211400 Vokal korkem-oner milliy qosiq atqarishiligi.pdf</h3>
+                <a href="https://drive.google.com/file/d/1X9a4WZjAcG2MUN8BvXetqHkLFOjfDhRk/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60211400 Vokal san'ati (an'anaviy xonandalik).pdf</h3>
+                <a href="https://drive.google.com/file/d/188ViC5JyiL-nxLpUU_3KDp4fVAof2ueb/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60211400 Vokal san'ati (estrada ijrochiligi).pdf</h3>
+                <a href="https://drive.google.com/file/d/1K2DNMGSPeJVdo8zlnqMwmeeA5BEySeXE/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60211500 Cholg'u ijrochiligi (an'anaviy cholg'ular).pdf</h3>
+                <a href="https://drive.google.com/file/d/1z9lzt0z_AXX475bLsLPHc9Cyy2I2LuV6/view?usp=sharing">Yuklab olish</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <h3>60411500 Saz asbap atqarishiligi (milliy saz-asbablar).pdf</h3>
+                <a href="https://drive.google.com/file/d/1SaD9YioPkU4SIPf0-fEpddZBQDBRM61B/view?usp=sharing">Yuklab olish</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

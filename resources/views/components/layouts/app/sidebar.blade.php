@@ -38,6 +38,9 @@
                     @can('brand.list')
                         <flux:navlist.item icon="squares-2x2" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Brands') }}</flux:navlist.item>
                     @endcan
+                    @can('characteristic.list')
+                        <flux:navlist.item icon="squares-2x2" :href="route('characteristics.index')" :current="request()->routeIs('characteristics.index')" wire:navigate>{{ __('Characteristics') }}</flux:navlist.item>
+                    @endcan
                 </flux:navlist.group>
             </flux:navlist>
 

@@ -23,7 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('responsibility', \App\Livewire\Structures\ResponsiblePeopleManage::class)->middleware('permission:responsibility.list')->name('responsibility.index');
     Route::get('equipment-types', \App\Livewire\EquipmentTypes\EquipmentTypeManage::class)->middleware('permission:equipment-type.list')->name('equipment-types.index');
     Route::get('brands', \App\Livewire\Brands\BrandManage::class)->middleware('permission:brand.list')->name('brands.index');
-
+    Route::get('characteristics', \App\Livewire\Characteristics\CharacteristicManage::class)->name('characteristics.index');
+    
     // Manage Roles with traditional Livewire
     Route::prefix('roles')->name('roles.')->group(function () {
         Route::get('/', \App\Livewire\Roles\RoleIndex::class)->name('index');

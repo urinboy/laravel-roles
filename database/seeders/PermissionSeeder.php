@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             'responsibility',
             'equipment-type',
             'brand',
+            'characteristic',
             'equipment',
             // 'equipment',
             // Add new model names here, e.g., 'post'

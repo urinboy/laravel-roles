@@ -65,9 +65,10 @@
                         </div>
                     @endif
 
-                    <div class="flex justify-end gap-2 mt-6 mb-2">
+                    <div class="flex justify-between gap-2 mt-6 mb-2">
                         <button type="button" @click="show = false" wire:click="closeModal"
-                            class="px-5 py-2 rounded-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-200 transition cursor-pointer">
+                            class="px-5 py-2 rounded-lg font-medium text-gray-700 bg-red-100 hover:bg-red-200 border border-red-200 transition cursor-pointer">
+                            <x-icons.cancel class="inline-block font-semibold mr-1" />
                             {{ __('Cancel') }}
                         </button>
                         @if ($actionType === 'delete')
@@ -100,12 +101,9 @@
                 <div class="mb-6 flex justify-end">
                     <button wire:click="openModal('create')"
                         class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer"
-                        title="{{ __('Add New Responsible Person') }}">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        {{ __("Add New Responsible Person") }}
+                        title="{{ __('Add New') }}">
+                        <x-icons.plus />
+                        {{ __("Add New") }}
                     </button>
                 </div>
             </div>

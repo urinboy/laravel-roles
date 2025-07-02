@@ -18,12 +18,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             StructureSeeder::class,
             EquipmentTypeSeeder::class,
-            // RoleSeeder::class,
-            // UserSeeder::class,
-            // BuildingSeeder::class,
-            // FloorSeeder::class,
-            // RoomSeeder::class,
-            // ResponsibilitySeeder::class,
+            BrandSeeder::class,
         ]);
     }
 }

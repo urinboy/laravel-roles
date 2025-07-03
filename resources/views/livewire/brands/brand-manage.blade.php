@@ -107,22 +107,24 @@
     <x-flash />
 
     {{-- Brand List --}}
-    <div class="container mx-auto p-4">
-        <div class="flex items-center justify-between mb-6 w-full">
-            <div>
-                <h2 class="text-2xl font-bold mb-1 text-gray-900 dark:text-white">{{ __('Brands') }}</h2>
-                <p class="text-gray-500 dark:text-gray-300">{{ __('Manage brands') }}</p>
+    <div>
+        <div class="mb-6 w-full">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">{{ __('Brands') }}</h2>
+                    <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage brands') }}</p>
+                </div>
+                <div class="mb-6 flex justify-end">
+                    <button wire:click="openModal('create')"
+                        class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer"
+                        title="{{ __('Add New Brand') }}">
+                        <x-icons.plus />
+                        {{ __("Add New") }}
+                    </button>
+                </div>
             </div>
-            <button wire:click="openModal('create')"
-                class="flex items-center gap-2 px-5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 hover:text-blue-800 font-semibold rounded-xl shadow-sm border border-blue-100 transition cursor-pointer text-lg"
-                title="{{ __('Add New') }}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M12 4v16m8-8H4"></path>
-                </svg>
-                <span>{{ __('Add New') }}</span>
-            </button>
+            <hr class="mb-4 border-gray-200 dark:border-gray-700" />
         </div>
-        <hr class="mb-6 border-gray-200 dark:border-gray-700" />
 
         {{-- <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-2xl border border-gray-100 dark:border-gray-800"> --}}
         <div>

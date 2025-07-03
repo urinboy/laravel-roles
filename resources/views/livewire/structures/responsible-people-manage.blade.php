@@ -91,7 +91,7 @@
     <x-flash/>
 
     {{-- Responsible People List --}}
-    <div class="container mx-auto p-4">
+    <div>
         <div class="mb-6 w-full">
             <div class="flex items-center justify-between">
                 <div>

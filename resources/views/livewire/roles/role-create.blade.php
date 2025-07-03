@@ -1,16 +1,24 @@
 @can('role.create')
 <div>
-    <div class="relative mb-6 w-full">
-        <flux:heading size="xl" level="1">{{ __('Create Role') }}</flux:heading>
-        <flux:subheading size="lg" class="mb-6">{{ __('Form for creating a new role') }}</flux:subheading>
-        <flux:separator variant="subtitle" />
+    <div class="mb-6 w-full">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">{{ __('Create Role') }}</h2>
+                <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Form for creating a new role') }}</p>
+            </div>
+            <div class="mb-6 flex justify-end">
+                <a href="{{ route('roles.index') }}"
+                   title="{{ __('Back to Roles List') }}"
+                   class="flex items-center px-4 py-2 bg-gray-100 text-gray-800 hover:bg-gray-200 font-medium rounded transition cursor-pointer dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                   wire:navigate>
+                    <x-icons.arrow-left class="mr-2" />
+                    {{ __("Back") }}
+                </a>
+            </div>
+        </div>
+        <hr class="mb-4 border-gray-200 dark:border-gray-700" />
     </div>
     <div>
-        <a href="{{ route('roles.index') }}"
-            class="cursor-pointer px-3 py-2 text-xs font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            wire:navigate>
-            {{ __('Back') }}
-        </a>
 
         <form wire:submit.prevent="submit" class="mt-6 space-y-6">
             <flux:input

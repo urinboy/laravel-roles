@@ -1,22 +1,26 @@
 @can('permission.view')
 <div>
-    <div class="relative mb-6 w-full">
-        <flux:heading size="xl" level="1">{{ __('Permissions') }}</flux:heading>
-        <flux:subheading size="lg" class="mb-6">{{ __('Manage all your permissions') }}</flux:subheading>
-        <flux:separator variant="subtitle" />
+    <div class="mb-6 w-full">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">{{ __('Permissions') }}</h2>
+                <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage all your permissions') }}</p>
+            </div>
+            @can('permission.create')
+                <div class="mb-6 flex justify-end">
+                    <button wire:click="openModal('create')"
+                        title="{{ __('Add New Permission') }}"
+                        class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer">
+                        <x-icons.plus />
+                        {{ __("Add New") }}
+                    </button>
+                </div>
+            @endcan
+        </div>
+        <hr class="mb-4 border-gray-200 dark:border-gray-700" />
     </div>
-
     <div>
         <x-alert-success />
-        @can('permission.create')
-        <div class="flex justify-end mb-4">
-            <button wire:click="openModal('create')"
-               class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            >
-                {{ __('Add Permission') }}
-            </button>
-        </div>
-        @endcan
 
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -39,11 +43,7 @@
                                    class="inline-flex items-center justify-center p-2 rounded-lg bg-blue-100 dark:bg-blue-800 hover:bg-blue-200 dark:hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300"
                                    title="{{ __('Edit') }}">
                                     <!-- Heroicons Pencil Square -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-700 dark:text-blue-200" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                              d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.5 19.5H3v-4.5l13.862-13.513z"/>
-                                    </svg>
+                                    <x-icons.edit />
                                 </button>
                                 @endcan
 
@@ -56,11 +56,7 @@
                                             x-on:click.prevent="$dispatch('open-modal', 'confirm-permission-deletion-{{ $perm->id }}')"
                                             title="{{ __('Delete') }}">
                                         <!-- Heroicons Trash -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             class="w-5 h-5 text-red-700 dark:text-red-200" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                                  d="M6 18A2 2 0 008 20h8a2 2 0 002-2V7H6v11zM5 7h14M10 11v6m4-6v6M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/>
-                                        </svg>
+                                        <x-icons.delete />
                                     </button>
                                 </flux:modal.trigger>
                                 <flux:modal name="confirm-permission-deletion-{{ $perm->id }}" focusable class="max-w-lg">

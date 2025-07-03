@@ -36,10 +36,10 @@
                         <flux:navlist.item icon="squares-2x2" :href="route('equipment-types.index')" :current="request()->routeIs('equipment-types.index')" wire:navigate>{{ __('Equipment Types') }}</flux:navlist.item>
                     @endcan
                     @can('brand.list')
-                        <flux:navlist.item icon="squares-2x2" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Brands') }}</flux:navlist.item>
+                        <flux:navlist.item icon="tag" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Brands') }}</flux:navlist.item>
                     @endcan
                     @can('characteristic.list')
-                        <flux:navlist.item icon="squares-2x2" :href="route('characteristics.index')" :current="request()->routeIs('characteristics.index')" wire:navigate>{{ __('Characteristics') }}</flux:navlist.item>
+                        <flux:navlist.item icon="list-bullet" :href="route('characteristics.index')" :current="request()->routeIs('characteristics.index')" wire:navigate>{{ __('Characteristics') }}</flux:navlist.item>
                     @endcan
                 </flux:navlist.group>
             </flux:navlist>

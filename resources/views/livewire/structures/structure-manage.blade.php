@@ -166,28 +166,25 @@
     <x-flash />
 
     {{-- Main structure display area --}}
-    <div class="container mx-auto">
+    <div>
         <div class="mb-6 w-full">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ __('Structure Management') }}</h1>
+                    <h2 class="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">{{ __('Structure Management') }}</h2>
                     <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage all your structure') }}</p>
                 </div>
                 @can('building.create')
                     <div class="mb-6 flex justify-end">
                         <button wire:click="openModal('building', 'create')"
-                        title="{{ __("Add New Building") }}"
-                            class="flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:text-white font-medium rounded hover:bg-blue-500 dark:hover:bg-blue-700 transition cursor-pointer">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 4v16m8-8H4"></path>
-                            </svg>
+                            title="{{ __('Add New Building') }}"
+                            class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer">
+                            <x-icons.plus />
                             {{ __("Add New") }}
                         </button>
                     </div>
                 @endcan
             </div>
-
+        
             <hr class="mb-4 border-gray-200 dark:border-gray-700" />
         </div>
 

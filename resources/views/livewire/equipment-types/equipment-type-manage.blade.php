@@ -1,9 +1,9 @@
 <div>
-    <div class="mb-6 w-full">
+    {{-- <div class="mb-6 w-full">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ __('Equipment Types') }}</h1>
         <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage all your equipment types') }}</p>
         <hr class="mb-4 border-gray-200 dark:border-gray-700" />
-    </div>
+    </div> --}}
 
     @if (session()->has('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
@@ -14,14 +14,22 @@
         </div>
     @endif
 
-    <div class="flex justify-end mb-4">
-        <button wire:click="openModal('create')"
-            class="flex items-center px-4 py-2 bg-blue-50 text-blue-700 font-medium rounded hover:bg-blue-100 transition cursor-pointer">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M12 4v16m8-8H4"></path>
-            </svg>
-            {{ __('Add Equipment Type') }}
-        </button>
+    <div class="mb-6 w-full">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">{{ __('Equipment Types') }}</h2>
+                <p class="text-gray-500 dark:text-gray-300 mb-4">{{ __('Manage equipment types') }}</p>
+            </div>
+            <div class="mb-6 flex justify-end">
+                <button wire:click="openModal('create')"
+                    class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 hover:text-white font-medium rounded hover:bg-blue-500 transition cursor-pointer"
+                    title="{{ __('Add Equipment Type') }}">
+                    <x-icons.plus />
+                    {{ __("Add New") }}
+                </button>
+            </div>
+        </div>
+        <hr class="mb-4 border-gray-200 dark:border-gray-700" />
     </div>
 
     <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 mb-6 overflow-x-auto">
